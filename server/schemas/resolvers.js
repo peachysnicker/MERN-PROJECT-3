@@ -34,6 +34,19 @@ const resolvers = {
       // token and user returned
       return { token, user };
     },
+    addPaymentInfo: async (_, { payment }, context) => {
+      if (!context.user) {
+        throw new AuthenticationError('You need to be logged in to add payment info.');
+      }
+
+      const updatedUser = await User.findByIdAndUpdate(
+        context.user._id,
+        { payment },
+        { new: true }
+      );
+
+      return updatedUser;
+    },
   },
 };
 
