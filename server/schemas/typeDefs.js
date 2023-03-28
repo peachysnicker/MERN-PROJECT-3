@@ -1,6 +1,12 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
+  type Payment {
+    card_number: String
+    expiration_date: String
+    cvv: String
+  }
+
   type Category {
     _id: ID
     name: String
@@ -25,6 +31,13 @@ const typeDefs = gql`
     username: String
     email: String
     password: String
+    payment: Payment
+  }
+
+  input PaymentInput {
+    card_number: String!
+    expiration_date: String!
+    cvv: String!
   }
 
   type Auth {
@@ -39,6 +52,9 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
+
+    # for adding payment info to User profile
+    addPaymentInfo(payment: PaymentInput!): User!
   }
 `;
 
