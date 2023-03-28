@@ -12,6 +12,9 @@ function Header() {
     <div>
       {Auth.loggedIn() ? (
             <>
+              <Link to="/me">
+                Profile
+              </Link>
               <button onClick={logout}>
                 Logout
               </button>

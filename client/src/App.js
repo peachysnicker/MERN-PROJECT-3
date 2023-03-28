@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Profile from './pages/Profile';
 import Header from './components/Header';
 
 const httpLink = createHttpLink({
@@ -47,10 +48,14 @@ function App() {
                 path="/login" 
                 element={<Login />}
               />
-              <Route 
-                path="/signup" 
-                element={<Signup />}
-              />
+            <Route 
+              path="/signup" 
+              element={<Signup />}
+            />
+            <Route 
+              path="/me" 
+              element={<Profile />}
+            />
             <Route 
               path='*'
               element={<h1>404 Not Found</h1>}

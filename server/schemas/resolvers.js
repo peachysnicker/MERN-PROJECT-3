@@ -10,6 +10,9 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
+    user: async (parent, { username }) => {
+      return User.findOne({ username });
+    },
   },
 
   // When someone signs up the args are received as second argument. Then a token is created for the user
@@ -34,6 +37,7 @@ const resolvers = {
       // token and user returned
       return { token, user };
     },
+
     addPaymentInfo: async (_, { payment }, context) => {
       if (!context.user) {
         throw new AuthenticationError('You need to be logged in to add payment info.');
