@@ -7,10 +7,28 @@ const typeDefs = gql`
     cvv: String
   }
 
+  type Category {
+    _id: ID
+    name: String
+  }
+
+  type Product {
+    _id: ID
+    title: String
+    description: String
+    # image: String
+    # quantity: Int
+    price: Float
+    # category: Category
+  }
+  type Order {
+    _id: ID
+    purchaseDate: String
+    # products: [Product]
+  }
   type User {
     _id: ID
     username: String
-    # There is now a field to store the user's password
     email: String
     password: String
     payment: Payment
@@ -22,7 +40,6 @@ const typeDefs = gql`
     cvv: String!
   }
 
-  # Set up an Auth type to handle returning data from a profile created or user login
   type Auth {
     token: ID!
     user: User
@@ -33,7 +50,6 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    # Set up mutations to handle creating a profile or logging into a profile and return Auth type
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
 
