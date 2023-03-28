@@ -12,6 +12,9 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
+    user: async (parent, { username }) => {
+      return User.findOne({ username });
+    },
 
     // Async function "categories" that queries for a list of Category docs and returns the result
     categories: async () => {
