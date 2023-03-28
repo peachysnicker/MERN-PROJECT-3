@@ -17,7 +17,21 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: true,
-    }
+    },
+    payment: {
+      card_number: {
+        type: String,
+        required: false,
+      },
+      expiration_date: {
+        type: String,
+        required: false,
+      },
+      cvv: {
+        type: String,
+        required: false,
+      }
+    },
   },
   {
     toJSON: {
