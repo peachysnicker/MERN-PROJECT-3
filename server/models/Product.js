@@ -12,7 +12,7 @@ const productSchema = new Schema(
       required: true,
     },
     image: {
-      type: String
+      type: String,
     },
     price: {
       type: Number,
@@ -21,13 +21,13 @@ const productSchema = new Schema(
     quantity: {
       type: Number,
       min: 0,
-      default: 0
+      default: 0,
     },
     category: {
       type: Schema.Types.ObjectId,
-      ref: 'Category',
-      required: true
-    }
+      ref: "Category",
+      required: true,
+    },
   },
   {
     timestamps: true,
