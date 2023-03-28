@@ -1,39 +1,30 @@
 import React from 'react';
-import { Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-
-import { QUERY_USER, GET_ME } from '../utils/queries';
+import { GET_ME } from '../utils/queries';
 
 import Auth from '../utils/auth';
 
 function Profile() {
-  const { username: userParam } = useParams();
-
-  const { loading, data } = useQuery(userParam ? QUERY_USER : GET_ME, {
-    variables: { username: userParam },
-  });
-
-  const user = data?.me || data?.user || {};
-  // navigate to personal profile page if username is yours
-  if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
-    return <Navigate to="/me" />;
-  }
-
+  const { loading, data } = useQuery(GET_ME);
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>
   }
-
-  if (!user?.username) {
-    return (
-      <h4>
-        You need to be logged in to see this. Use the navigation links above to
-        sign up or log in!
-      </h4>
-    );
-  }
+  
+  console.log(data);
 
   return (
-    <div>Profile</div>
+    <div>
+      {Auth.loggedIn() ? (
+        <div>
+          <div>ID: {data.me._id}</div>
+          <div>Email: {data.me.email}</div>
+        </div>
+      ) : (
+        <div>
+          You need to login to check your profile
+        </div>
+      )}
+    </div>
   )
 }
 

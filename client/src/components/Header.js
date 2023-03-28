@@ -13,7 +13,7 @@ function Header() {
       {Auth.loggedIn() ? (
             <>
               <Link to="/me">
-                {Auth.getProfile().data._id}'s profile
+                {Auth.getProfile().data.username}'s profile
               </Link>
               <button onClick={logout}>
                 Logout
