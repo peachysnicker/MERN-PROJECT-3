@@ -60,7 +60,6 @@ function Login() {
                   onChange={handleChange}
                 />
                 <button
-                  className="btn btn-block btn-primary"
                   style={{ cursor: 'pointer' }}
                   type="submit"
                 >
