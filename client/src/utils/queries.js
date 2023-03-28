@@ -14,3 +14,18 @@ export const GET_ME = gql`
   }
 }
 `;
+
+export const QUERY_USER = gql`
+  query User($username: String!) {
+  user(username: $username) {
+    email
+    password
+    payment {
+      card_number
+      cvv
+      expiration_date
+    }
+  }
+}
+`;
+
