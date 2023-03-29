@@ -11,21 +11,31 @@ export const GET_ME = gql`
       cvv
       expiration_date
     }
+    isAdmin
   }
 }
 `;
 
 export const QUERY_USER = gql`
-  query User($username: String!) {
-  user(username: $username) {
-    email
-    password
-    payment {
-      card_number
-      cvv
-      expiration_date
+  query getUser($username: String!) {
+    user(username: $username) {
+      _id
+      isAdmin
+      username
+      email
+      password
+      payment {
+        card_number
+        cvv
+        expiration_date
+      }
+      address {
+        city
+        phone
+        postal_code
+        province
+        street
+      }
     }
   }
-}
 `;
-

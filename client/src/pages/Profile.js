@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_ME } from '../utils/queries';
 import { ADD_PAYMENT_INFO, ADD_ADDRESS } from '../utils/mutations';
+import { Link } from 'react-router-dom';
 
 import Auth from '../utils/auth';
 
@@ -83,6 +84,11 @@ function Profile() {
         <div>
           <div>ID: {data ? data.me._id : ''}</div>
           <div>Email: {data ? data.me.email : ''}</div>
+          {data.me.isAdmin ? (
+            <Link to={"/admin"}>Go to Admin Page</Link>
+          ):(
+            <p>Hi. How are you?</p>
+          )}
           <form onSubmit={handleFormSubmit}>
             <label htmlFor="cardNumber">Card Number:</label>
             <input type="text" id="cardNumber" value={cardNumber} onChange={(event) => setCardNumber(event.target.value)} />

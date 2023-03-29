@@ -19,6 +19,11 @@ const userSchema = new Schema(
       required: true,
     },
 
+    isAdmin: {
+      type: Boolean,
+      default: false
+    },
+
     payment: {
       card_number: {
         type: String,

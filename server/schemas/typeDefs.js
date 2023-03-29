@@ -41,6 +41,7 @@ const typeDefs = gql`
     password: String
     payment: Payment
     address: Address
+    isAdmin: Boolean
   }
 
   input PaymentInput {
