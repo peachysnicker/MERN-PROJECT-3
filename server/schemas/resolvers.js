@@ -112,6 +112,7 @@ const resolvers = {
   },
 
   Mutation: {
+    // create new user based on args, signs a token using a helper function signToken() & returns token and user object as an object
     addUser: async (parent, args) => {
       const user = await User.create(args);
       const token = signToken(user);
@@ -132,6 +133,64 @@ const resolvers = {
       return { token, user };
     },
 
+    // adds order object containing an array of product object to a user orders array and error if no user is logged in
+    addOrder: async (parent, { products }, context) => {
+      console.log(context);
+      if (context.user) {
+        const order = new Order({ products });
+
+        await User.findByIdAndUpdate(context.user._id, {
+          $push: { orders: order },
+        });
+
+        return order;
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+
+    //updates a user's information with the provided arguments and returns the updated user object or throw error if not logged in
+    updateUser: async (parent, args, context) => {
+      if (context.user) {
+        return await User.findByIdAndUpdate(context.user._id, args, {
+          new: true,
+        });
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
+
+    //product's quantity by decr  by the absolute value of the provided quantity & returns the updated product object
+    updateProduct: async (parent, { _id, quantity }) => {
+      const decrement = Math.abs(quantity) * -1;
+
+      return await Product.findByIdAndUpdate(
+        _id,
+        { $inc: { quantity: decrement } },
+        { new: true }
+      );
+    },
+
+    // Login to check creds
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        throw new AuthenticationError("Incorrect credentials");
+      }
+
+      const correctPw = await user.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw new AuthenticationError("Incorrect credentials");
+      }
+
+      const token = signToken(user);
+
+      return { token, user };
+    },
+
+    // Adds payment information to user account and returns the updated user object or error if not logged in
     addPaymentInfo: async (_, { payment }, context) => {
       if (!context.user) {
         throw new AuthenticationError(
