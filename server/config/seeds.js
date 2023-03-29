@@ -83,11 +83,11 @@ db.once('open', async () => {
     username: 'reddit',
     email: 'pamela@testmail.com',
     password: 'password12345',
-    orders: [
-      {
-        products: [products[0]._id, products[0]._id, products[1]._id]
-      }
-    ]
+    // orders: [
+    //   {
+    //     products: [products[0]._id, products[0]._id, products[1]._id]
+    //   }
+    // ]
   });
 
   await User.create({
