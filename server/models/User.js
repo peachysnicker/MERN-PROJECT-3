@@ -33,6 +33,28 @@ const userSchema = new Schema(
         required: false,
       }
     },
+    address: {
+      street: {
+        type: String,
+        required: false
+      },
+      city: {
+        type: String,
+        required: false
+      },
+      province: {
+        type: String,
+        required: false
+      },
+      postal_code: {
+        type: String,
+        required: false
+      },
+      phone: {
+        type: String,
+        required: false
+      }
+    }
 
   },
   {

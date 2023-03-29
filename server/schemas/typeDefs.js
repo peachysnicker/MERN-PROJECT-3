@@ -7,6 +7,14 @@ const typeDefs = gql`
     cvv: String
   }
 
+  type Address {
+  street: String
+  city: String
+  province: String
+  postal_code: String
+  phone: String
+}
+
   type Category {
     _id: ID
     name: String
@@ -32,13 +40,21 @@ const typeDefs = gql`
     email: String
     password: String
     payment: Payment
-    orders: [Order]
+    address: Address
   }
 
   input PaymentInput {
     card_number: String!
     expiration_date: String!
     cvv: String!
+  }
+
+  input AddressInput {
+  street: String
+  city: String
+  province: String
+  postal_code: String
+  phone: String
   }
 
   type Checkout {
@@ -72,6 +88,7 @@ const typeDefs = gql`
     ): User
     updateProduct(_id: ID!, quantity: Int!): Product
     addPaymentInfo(payment: PaymentInput!): User!
+    addAddress(address: AddressInput!): User!
   }
 `;
 

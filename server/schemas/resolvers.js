@@ -171,25 +171,6 @@ const resolvers = {
       );
     },
 
-    // Login to check creds
-    login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
-
-      if (!user) {
-        throw new AuthenticationError("Incorrect credentials");
-      }
-
-      const correctPw = await user.isCorrectPassword(password);
-
-      if (!correctPw) {
-        throw new AuthenticationError("Incorrect credentials");
-      }
-
-      const token = signToken(user);
-
-      return { token, user };
-    },
-
     // Adds payment information to user account and returns the updated user object or error if not logged in
     addPaymentInfo: async (_, { payment }, context) => {
       if (!context.user) {
@@ -201,6 +182,21 @@ const resolvers = {
       const updatedUser = await User.findByIdAndUpdate(
         context.user._id,
         { payment },
+        { new: true }
+      );
+
+      return updatedUser;
+    },
+    addAddress: async (_, { address }, context) => {
+      if (!context.user) {
+        throw new AuthenticationError(
+          "You need to be logged in to add address info."
+        );
+      }
+      
+      const updatedUser = await User.findByIdAndUpdate(
+        context.user._id,
+        { address },
         { new: true }
       );
 
