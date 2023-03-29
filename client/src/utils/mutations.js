@@ -27,3 +27,18 @@ export const ADD_USER = gql`
   }
 }
 `;
+
+export const ADD_PAYMENT_INFO = gql`
+  mutation AddPaymentInfo($payment: PaymentInput!) {
+    addPaymentInfo(payment: $payment) {
+      _id
+      username
+      email
+      payment {
+        card_number
+        expiration_date
+        cvv
+      }
+    }
+  }
+`;
