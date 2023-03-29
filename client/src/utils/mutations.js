@@ -42,3 +42,20 @@ export const ADD_PAYMENT_INFO = gql`
     }
   }
 `;
+
+export const ADD_ADDRESS = gql`
+  mutation AddAddress($address: AddressInput!) {
+    addAddress(address: $address) {
+      _id
+      username
+      email
+      address {
+        street
+        city
+        province
+        postal_code
+        phone
+      }
+    }
+  }
+`;
