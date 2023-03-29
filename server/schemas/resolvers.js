@@ -12,9 +12,26 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
+    //return a user object by username
     user: async (parent, { username }) => {
       return User.findOne({ username });
     },
+
+    //finds and returns the user withcurrent context and their orders sorted by purchase date or error if user is not logged in
+    // user: async (parent, args, context) => {
+    //   if (context.user) {
+    //     const user = await User.findById(context.user._id).populate({
+    //       path: 'orders.products',
+    //       populate: 'category'
+    //     });
+
+    //     user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
+
+    //     return user;
+    //   }
+
+    //   throw new AuthenticationError('Not logged in');
+    // },
 
     // Async function "categories" that queries for a list of Category docs and returns the result
     categories: async () => {
