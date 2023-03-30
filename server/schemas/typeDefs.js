@@ -92,6 +92,7 @@ const typeDefs = gql`
     updateProduct(_id: ID!, quantity: Int!): Product
     addPaymentInfo(payment: PaymentInput!): User!
     addAddress(address: AddressInput!): User!
+    deleteProduct(_id: ID!): Product 
   }
 `;
 

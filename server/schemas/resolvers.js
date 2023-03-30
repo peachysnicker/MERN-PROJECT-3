@@ -209,6 +209,9 @@ const resolvers = {
 
       return updatedUser;
     },
+    deleteProduct: async (parent, { _id }) => {
+      return Product.findOneAndDelete({ _id });
+    },
   },
 };
 
