@@ -1,5 +1,6 @@
 import React from "react";
 import ProductList from "../components/ProductList";
+import CategoryMenu from "../components/CategoryMenu";
 // custom hook from apollo/client library - allows us to use the queries
 import { useQuery } from "@apollo/client";
 // bring in the object query_profiles bc we want to use it inside the hook
@@ -16,6 +17,7 @@ const Home = () => {
       <div className="home-container">Home</div>
       <div className="flex-row justify-center">
         <div className="col-12 col-md-10 my-3">
+        <CategoryMenu />
           {/* coniditonal rendering while loading is true then show div ..loading.. */}
           {loading ? (
             <div>Loading...</div>
