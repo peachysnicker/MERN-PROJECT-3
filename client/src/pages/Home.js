@@ -10,7 +10,7 @@ const Home = () => {
   // loading is the status : true or false, data is the result from that query
   const { loading, data } = useQuery(QUERY_ALL_PRODUCTS);
   //Prop - Checking when the data comes back set it to profiles data?. - means if data is there then get the profiles object or give an empty array
-  const products = data?.products || [];
+  const products = data?.productList || [];
 
   return (
     <div>
