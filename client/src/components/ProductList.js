@@ -11,7 +11,7 @@ const productList = ({ products, title, image }) => {
               <div className="card mb-3">
                 <h4 className="card-header bg-dark text-light p-2 m-0">
                   {products.title} <br />
-                  <img src={products.image} alt={products.title} />
+                  <img src={`/images/${products.image}`} alt={products.title} />
                 </h4>
               </div>
             </div>
