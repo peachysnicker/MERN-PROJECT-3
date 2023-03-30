@@ -37,28 +37,28 @@ function Login() {
     });
   };
   return (
-    <div>
+    <div className='flex-container'>
       {data ? (
               <p>
                 Success! You may now head{' '}
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
-              <form onSubmit={handleFormSubmit}>
+              <form className='login-form' onSubmit={handleFormSubmit}>
                 <input
                   placeholder="Your email"
                   name="email"
                   type="email"
                   value={formState.email}
                   onChange={handleChange}
-                />
+                /> <br />
                 <input
                   placeholder="******"
                   name="password"
                   type="password"
                   value={formState.password}
                   onChange={handleChange}
-                />
+                /> <br />
                 <button
                   style={{ cursor: 'pointer' }}
                   type="submit"

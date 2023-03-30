@@ -39,14 +39,14 @@ function Signup() {
   };
 
   return (
-    <div>
+    <div className='flex-container'>
       {data ? (
               <p>
                 Success! You may now head{' '}
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
-              <form onSubmit={handleFormSubmit}>
+              <form className='signup-form' onSubmit={handleFormSubmit}>
                 <input
                   placeholder="Your username"
                   name="username"
