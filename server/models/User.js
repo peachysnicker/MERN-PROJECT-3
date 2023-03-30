@@ -24,6 +24,11 @@ const userSchema = new Schema(
       default: false
     },
 
+    cart: {
+      type: Schema.Types.ObjectId,
+      ref: 'Cart'
+    },
+    
     payment: {
       card_number: {
         type: String,

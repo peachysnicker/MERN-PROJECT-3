@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Product, Order } = require("../models");
+const { User, Product, Order, Cart } = require("../models");
 const { signToken } = require("../utils/auth");
 // const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 
@@ -105,8 +105,12 @@ const resolvers = {
     // create new user based on args, signs a token using a helper function signToken() & returns token and user object as an object
     addUser: async (parent, args) => {
       const user = await User.create(args);
-      const token = signToken(user);
-      return { token, user };
+      const cart = await Cart.create({product: []});
+      const updatedUser = await User.findByIdAndUpdate(user._id, {cart}, {
+        new:true
+      })
+      const token = signToken(updatedUser);
+      return { token, updatedUser };
     },
 
     // When logging in will send email and password as second argument as single object to match with the user. It is then authenticated or not.
