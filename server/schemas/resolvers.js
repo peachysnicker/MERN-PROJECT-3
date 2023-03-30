@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Product, Category, Order } = require("../models");
+const { User, Product, Order } = require("../models");
 const { signToken } = require("../utils/auth");
 // const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 
@@ -36,36 +36,19 @@ const resolvers = {
     //MARIAH TESTING
     // Async function "products" that queries for a list of Category docs and returns the result
     productList: async () => {
-      return await Product.find().populate("category");
+      return await Product.find();
     },
     // TEST over
 
     // Async function "categories" that queries for a list of Category docs and returns the result
-    categories: async () => {
-      return await Category.find();
-    },
 
     // Async function "product" that queries for a Product doc with  _id and returns it with its related Category object (if exists)
     product: async (parent, { _id }) => {
-      return await Product.findById(_id).populate("category");
+      return await Product.findById(_id)
     },
 
     // Async function "products" that queries for Product docs based on optional category and title parameters, constructs a filter object based on those params, populates the related Category object for each Product, and returns the resulting list of Product docs
-    products: async (parent, { category, name }) => {
-      const params = {};
 
-      if (category) {
-        params.category = category;
-      }
-
-      if (name) {
-        params.name = {
-          $regex: name,
-        };
-      }
-
-      return await Product.find(params).populate("category");
-    },
     // Returns an order associated with the logged-in user, after fetching the user and populating the products and categories associated with that order
     order: async (parent, { _id }, context) => {
       if (context.user) {

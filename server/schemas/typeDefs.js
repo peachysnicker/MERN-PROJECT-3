@@ -15,12 +15,6 @@ const typeDefs = gql`
     phone: String
   }
 
-  type Category {
-    _id: ID
-    name: String
-    # products: [Product] - check seeds if products have categories
-  }
-
   type Product {
     _id: ID
     title: String
@@ -28,7 +22,7 @@ const typeDefs = gql`
     image: String
     quantity: Int
     price: Float
-    category: Category
+    category: String
   }
   type Order {
     _id: ID
@@ -71,8 +65,6 @@ const typeDefs = gql`
   type Query {
     me: User
     user(username: String!): User
-    categories: [Category]
-    products(category: ID, name: String): [Product]
     product(_id: ID!): Product
     order(_id: ID!): Order
     checkout(products: [ID]!): Checkout
