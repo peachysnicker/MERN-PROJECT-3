@@ -47,6 +47,7 @@ function Signup() {
               </p>
             ) : (
               <form className='signup-form' onSubmit={handleFormSubmit}>
+                <h2>Please Sign Up</h2>
                 <input
                   placeholder="Your username"
                   name="username"
