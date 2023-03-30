@@ -24,6 +24,33 @@ const typeDefs = gql`
     price: Float
     category: String
   }
+  
+  type CartProduct {
+  productId: Product!
+  quantity: Int!
+  }
+
+  type Cart {
+    _id: ID!
+    products: [CartProduct!]!
+    createdAt: String!
+    updatedAt: String!
+  }
+
+  input CartProductInput {
+    productId: ID!
+    quantity: Int!
+  }
+
+  input UpdateCartProductInput {
+    productId: ID!
+    quantity: Int!
+  }
+
+  input UpdateCartInput {
+    products: [UpdateCartProductInput!]!
+  }
+
   type Order {
     _id: ID
     purchaseDate: String

@@ -14,7 +14,7 @@ const resolvers = {
     },
     //return a user object by username
     user: async (parent, { username }) => {
-      return User.findOne({ username });
+      return User.findOne({ username }).populate('Cart');
     },
 
     //finds and returns the user withcurrent context and their orders sorted by purchase date or error if user is not logged in
