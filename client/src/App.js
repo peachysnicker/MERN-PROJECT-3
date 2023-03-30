@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css';
 import {
   ApolloClient,
   InMemoryCache,
@@ -13,6 +14,7 @@ import Signup from './pages/Signup';
 import Profile from './pages/Profile';
 import Admin from './pages/Admin';
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -67,6 +69,7 @@ function App() {
             />
           </Routes>
         </>
+        <Footer />
       </Router>
     </ApolloProvider>
   )

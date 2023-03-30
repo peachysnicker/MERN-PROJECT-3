@@ -10,11 +10,14 @@ function Header() {
   };
   
   return (
-    <div>
+    <div className='header'>
       {Auth.loggedIn() ? (
         <>
+          <Link to="/">
+            Home
+          </Link>
           <Link to="/me">
-            {Auth.getProfile().data.username}'s profile
+            Profile
           </Link>
           <button onClick={logout}>
             Logout
@@ -22,6 +25,9 @@ function Header() {
         </>
       ) : (
         <>
+          <Link to="/">
+            Home
+          </Link>
           <Link to="/login">
             Login
           </Link>

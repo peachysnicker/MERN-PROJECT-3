@@ -30,8 +30,10 @@ class AuthService {
 
   logout() {
     localStorage.removeItem('id_token');
-    window.location.reload();
+    window.location.assign('/');
   }
 }
 
-export default new AuthService();
+const authService = new AuthService()
+
+export default authService;
