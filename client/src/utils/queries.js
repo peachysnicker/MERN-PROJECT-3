@@ -41,19 +41,17 @@ export const QUERY_USER = gql`
   }
 `;
 export const QUERY_ALL_PRODUCTS = gql`
-  query productList {
-    products {
-      _id
-      title
-      description
-      image
-      price
-      quantity
-      category {
-        name
-      }
-    }
+  query queryAllProducts {
+  productList {
+    _id
+    title
+    description
+    image
+    quantity
+    price
+    category
   }
+}
 `;
 export const QUERY_CATEGORIES = gql`
   query category {
