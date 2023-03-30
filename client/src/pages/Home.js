@@ -13,7 +13,7 @@ const Home = () => {
 
   return (
     <div>
-      <div>Home</div>
+      <div className="home-container">Home</div>
       <div className="flex-row justify-center">
         <div className="col-12 col-md-10 my-3">
           {/* coniditonal rendering while loading is true then show div ..loading.. */}

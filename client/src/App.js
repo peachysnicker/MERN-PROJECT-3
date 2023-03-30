@@ -1,4 +1,5 @@
 import React from "react";
+import "./App.css";
 import {
   ApolloClient,
   InMemoryCache,
@@ -15,6 +16,7 @@ import Admin from "./pages/Admin";
 import Header from "./components/Header";
 
 import ProductList from "./components/ProductList";
+import Footer from "./components/Footer";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -52,6 +54,7 @@ function App() {
               <Route path="*" element={<h1>404 Not Found</h1>} />
             </Routes>
           </>
+          <Footer />
         </Router>
       </ApolloProvider>
     </div>

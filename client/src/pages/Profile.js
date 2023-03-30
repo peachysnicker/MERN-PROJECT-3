@@ -78,44 +78,44 @@ function Profile() {
     return <div>{error || addressError}</div>
   }
 
+
   return (
-    <div>
+    <div className='profile-container'>
       {Auth.loggedIn() ? (
-        <div>
+        <div className='profile'>
           <div>ID: {data ? data.me._id : ''}</div>
           <div>Email: {data ? data.me.email : ''}</div>
-          {data.me.isAdmin ? (
-            <Link to={"/admin"}>Go to Admin Page</Link>
-          ):(
-            <p>Hi. How are you?</p>
-          )}
+          <div>Admin: {data ? data.me.isAdmin ? (<Link to="/admin">Go to Admin Page</Link>) : 'N/A' : ''}</div>
+
           <form onSubmit={handleFormSubmit}>
             <label htmlFor="cardNumber">Card Number:</label>
-            <input type="text" id="cardNumber" value={cardNumber} onChange={(event) => setCardNumber(event.target.value)} />
+            <input type="text" id="cardNumber" value={cardNumber} onChange={(event) => setCardNumber(event.target.value)} /> <br />
             <label htmlFor="expirationDate">Expiration Date:</label>
-            <input type="text" id="expirationDate" value={expirationDate} onChange={(event) => setExpirationDate(event.target.value)} />
+            <input type="text" id="expirationDate" value={expirationDate} onChange={(event) => setExpirationDate(event.target.value)} /> <br />
             <label htmlFor="cvv">CVV:</label>
-            <input type="text" id="cvv" value={cvv} onChange={(event) => setCvv(event.target.value)} />
+            <input type="text" id="cvv" value={cvv} onChange={(event) => setCvv(event.target.value)} /> <br />
             <button type="submit">Save Payment Information</button>
           </form>
 
           <form onSubmit={handleAddressFormSubmit}>
             <label htmlFor="street">Street:</label>
-            <input type="text" id="street" value={street} onChange={(event) => setStreet(event.target.value)} />
+            <input type="text" id="street" value={street} onChange={(event) => setStreet(event.target.value)} /> <br />
             <label htmlFor="city">City:</label>
-            <input type="text" id="city" value={city} onChange={(event) => setCity(event.target.value)} />
+            <input type="text" id="city" value={city} onChange={(event) => setCity(event.target.value)} /> <br />
             <label htmlFor="province">Province:</label>
-            <input type="text" id="province" value={province} onChange={(event) => setProvince(event.target.value)} />
+            <input type="text" id="province" value={province} onChange={(event) => setProvince(event.target.value)} /> <br />
             <label htmlFor="postalCode">Postal Code:</label>
-            <input type="text" id="postalCode" value={postalCode} onChange={(event) => setPostalCode(event.target.value)} />
+            <input type="text" id="postalCode" value={postalCode} onChange={(event) => setPostalCode(event.target.value)} /> <br />
             <label htmlFor="phone">Phone:</label>
-            <input type="text" id="phone" value={phone} onChange={(event) => setPhone(event.target.value)} />
+            <input type="text" id="phone" value={phone} onChange={(event) => setPhone(event.target.value)} /> <br />
             <button type="submit">Save Address Information</button>
           </form>
+
         </div>
       ) : (
         <div>
           You need to login to check your profile
+          <Link to='home'>Home</Link>
         </div>
       )}
     </div>
