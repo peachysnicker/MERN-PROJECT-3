@@ -1,78 +1,35 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useQuery, useMutation } from '@apollo/client';
+import { GET_ALL_PRODUCTS } from '../utils/queries';
+import { DELETE_PRODUCT } from '../utils/mutations';
 
 function Admin() {
-  const [showForm1, setShowForm1] = useState(false);
-  const handleShowForm1 = () => {
-    setShowForm1(!showForm1);
-  };
-
-  const [showForm2, setShowForm2] = useState(false);
-  const handleShowForm2 = () => {
-    setShowForm2(!showForm2);
-  };
-
-  const [showForm3, setShowForm3] = useState(false);
-  const handleShowForm3 = () => {
-    setShowForm3(!showForm3);
-  };
-
-  const [showForm4, setShowForm4] = useState(false);
-  const handleShowForm4 = () => {
-    setShowForm4(!showForm4);
-  };
-
-  const [showForm5, setShowForm5] = useState(false);
-  const handleShowForm5 = () => {
-    setShowForm5(!showForm5);
-  };
+  const { loading, data } = useQuery(GET_ALL_PRODUCTS);
+  const [deleteProduct] = useMutation(DELETE_PRODUCT);
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className='admin-container'>
-      <div className='admin-block'>
-        <button onClick={handleShowForm1}>Show all products</button>
-        {  
-          showForm1 && 
-          <div>
-            form
+      <h2>CRUD Operations</h2>
+      <button className='add-product-btn'>Add Product</button>
+      {data.productList.map(p => {
+        return (
+          <div key={p._id} className='admin-block'>
+            <div>Product ID: {p._id}</div>
+            <div>Title: <span className='admin-block-title'>{p.title}</span></div>
+            <div>Description: {p.description}</div>
+            <div>Price: {p.price}</div>
+            <div>Stock: {p.quantity}</div>
+            <button>Update</button>
+            <button onClick={() => {
+              deleteProduct({ variables: { id: p._id } });
+              document.location.reload();
+            }}>Delete</button>
           </div>
-        }
-      </div>
-      <div className='admin-block'>
-        <button onClick={handleShowForm2}>Check one product</button>
-        {
-          showForm2 && 
-          <div>
-            form
-          </div>
-        }
-      </div>
-      <div className='admin-block'>
-      <button onClick={handleShowForm3}>Add product</button>
-        {
-          showForm3 && 
-          <div>
-            form
-          </div>
-        }
-      </div>
-      <div className='admin-block'>
-        <button onClick={handleShowForm4}>Update Product</button>
-        {
-          showForm4 && 
-          <div>
-            form
-          </div>
-        }
-      </div>
-      <div className='admin-block'>
-        <button onClick={handleShowForm5}>Delete Product</button>
-        {
-          showForm5 && 
-          <div>
-            form
-          </div>
-        }
-      </div>
+        )
+      })}
     </div>
   )
 }

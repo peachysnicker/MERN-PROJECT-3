@@ -6,6 +6,10 @@
   margin: 0;
 }
 
+.hidden {
+  display: none;
+}
+
 .header {
   width: 100vw;
   height: 7.5vh;
@@ -119,7 +123,7 @@
 .admin-container {
   padding: 20px;
   width: 100%;
-  height: 85vh;
+  min-height: 85vh;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 0.8rem;
   display: flex;
@@ -131,9 +135,26 @@
 
 .admin-block {
   min-height: 40px;
+  padding: 20px;
+  width: 80%;
+  border: 1px solid rgba(30, 30, 30, 0.8);
+  border-bottom: 0.5px solid rgba(30, 30, 30, 0.8);
+}
+
+.admin-block .admin-block-title {
+  font-weight: bolder;
 }
 
 .admin-block button {
+  border: none;
+  background-color: rgba(30, 30, 30, 0.8);
+  color: #fff;
+  padding: 7px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.add-product-btn {
   border: none;
   background-color: rgba(30, 30, 30, 0.8);
   color: #fff;

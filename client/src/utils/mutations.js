@@ -59,3 +59,12 @@ export const ADD_ADDRESS = gql`
     }
   }
 `;
+
+export const DELETE_PRODUCT = gql`
+  mutation deleteProduct($id: ID!) {
+  deleteProduct(_id: $id) {
+    title
+    _id
+  }
+}
+`;
