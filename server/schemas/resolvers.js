@@ -33,12 +33,19 @@ const resolvers = {
     //   throw new AuthenticationError('Not logged in');
     // },
 
+    //MARIAH TESTING
+    // Async function "products" that queries for a list of Category docs and returns the result
+    productList: async () => {
+      return await Product.find().populate("category");
+    },
+    // TEST over
+
     // Async function "categories" that queries for a list of Category docs and returns the result
     categories: async () => {
       return await Category.find();
     },
 
-    // Async function "product" that queries for a Product doc with  _id and returns it, along with its related Category object (if exists)
+    // Async function "product" that queries for a Product doc with  _id and returns it with its related Category object (if exists)
     product: async (parent, { _id }) => {
       return await Product.findById(_id).populate("category");
     },
@@ -193,7 +200,7 @@ const resolvers = {
           "You need to be logged in to add address info."
         );
       }
-      
+
       const updatedUser = await User.findByIdAndUpdate(
         context.user._id,
         { address },

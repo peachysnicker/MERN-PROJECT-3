@@ -8,16 +8,17 @@ const typeDefs = gql`
   }
 
   type Address {
-  street: String
-  city: String
-  province: String
-  postal_code: String
-  phone: String
-}
+    street: String
+    city: String
+    province: String
+    postal_code: String
+    phone: String
+  }
 
   type Category {
     _id: ID
     name: String
+    # products: [Product] - check seeds if products have categories
   }
 
   type Product {
@@ -51,11 +52,11 @@ const typeDefs = gql`
   }
 
   input AddressInput {
-  street: String
-  city: String
-  province: String
-  postal_code: String
-  phone: String
+    street: String
+    city: String
+    province: String
+    postal_code: String
+    phone: String
   }
 
   type Checkout {
@@ -75,6 +76,7 @@ const typeDefs = gql`
     product(_id: ID!): Product
     order(_id: ID!): Order
     checkout(products: [ID]!): Checkout
+    productList: [Product]
   }
 
   type Mutation {

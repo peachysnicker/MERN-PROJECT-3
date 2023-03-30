@@ -1,31 +1,33 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
   createHttpLink,
-} from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import Profile from './pages/Profile';
-import Admin from './pages/Admin';
-import Header from './components/Header';
-import Footer from './components/Footer';
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Profile from "./pages/Profile";
+import Admin from "./pages/Admin";
+import Header from "./components/Header";
+
+import ProductList from "./components/ProductList";
+import Footer from "./components/Footer";
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: "/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('id_token');
+  const token = localStorage.getItem("id_token");
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
@@ -35,44 +37,28 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-
 function App() {
   return (
-    <ApolloProvider client={client}>
-      <Router>
-        <Header />
-        <>
-          <Routes>
-            <Route 
-              path='/' 
-              element={<Home />} 
-            />
-            <Route 
-                path="/login" 
-                element={<Login />}
-              />
-            <Route 
-              path="/signup" 
-              element={<Signup />}
-            />
-            <Route 
-              path="/me" 
-              element={<Profile />}
-            />
-            <Route 
-              path="/admin" 
-              element={<Admin />}
-            />
-            <Route 
-              path='*'
-              element={<h1>404 Not Found</h1>}
-            />
-          </Routes>
-        </>
-        <Footer />
-      </Router>
-    </ApolloProvider>
-  )
+    <div>
+      <ApolloProvider client={client}>
+        <Router>
+          <Header />
+          <ProductList />
+          <>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/me" element={<Profile />} />
+              <Route path="/admin" element={<Admin />} />
+              <Route path="*" element={<h1>404 Not Found</h1>} />
+            </Routes>
+          </>
+          <Footer />
+        </Router>
+      </ApolloProvider>
+    </div>
+  );
 }
 
 export default App;
