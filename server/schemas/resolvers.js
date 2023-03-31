@@ -199,6 +199,14 @@ const resolvers = {
     deleteProduct: async (parent, { _id }) => {
       return Product.findOneAndDelete({ _id });
     },
+    addProduct: async (_, { product }) => {
+      try {
+        const savedProduct = await Product.create(product);
+        return savedProduct;
+      } catch (error) {
+        throw new Error('Error creating product');
+      }
+    },
   },
 };
 
