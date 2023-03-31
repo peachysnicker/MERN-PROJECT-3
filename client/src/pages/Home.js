@@ -25,6 +25,15 @@ const Home = () => {
       <div id="categoryMenu" className="p-4 col-12 d-flex justify-content-end">
         <CategoryMenu />
       </div>
+      <div>
+        <img
+          id="biking"
+          src="wheels-banner.png"
+          width="100%"
+          className=""
+          alt="mountain biking"
+        />
+      </div>
       {/* coniditonal rendering while loading is true then show div ..loading.. */}
       {loading ? (
         <div>Loading...</div>
