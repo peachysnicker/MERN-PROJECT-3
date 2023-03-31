@@ -19,6 +19,9 @@ function Header() {
           <Link to="/me">
             Profile
           </Link>
+          <Link to="/cart">
+            Cart
+          </Link>
           <button onClick={logout}>
             Logout
           </button>

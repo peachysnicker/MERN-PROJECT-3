@@ -13,6 +13,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
 import Admin from "./pages/Admin";
+import Cart from "./pages/Cart";
 import Header from "./components/Header";
 
 import ProductList from "./components/ProductList";
@@ -51,6 +52,7 @@ function App() {
               <Route path="/signup" element={<Signup />} />
               <Route path="/me" element={<Profile />} />
               <Route path="/admin" element={<Admin />} />
+              <Route path="/cart" element={<Cart />}/>
               <Route path="*" element={<h1>404 Not Found</h1>} />
             </Routes>
           </>
