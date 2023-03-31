@@ -43,7 +43,6 @@ const ProductList = ({ products, title, image }) => {
 
   return (
     <div>
-      <h3>{title}</h3>
       <div className="flex-row justify-space-between my-4">
         {products &&
           products.map((products) => (
