@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_ALL_PRODUCTS } from '../utils/queries';
-import { DELETE_PRODUCT, ADD_PRODUCT } from '../utils/mutations';
+import { DELETE_PRODUCT, ADD_PRODUCT, UPDATE_PRODUCT } from '../utils/mutations';
 
 
 function Admin() {
   const [showForm, setShowForm] = useState('hidden');
+  const [showUpdateForm, setUpdateForm] = useState('hidden');
 
   const [formData, setFormData] = useState({
     title: '',
@@ -16,6 +17,38 @@ function Admin() {
     category: ''
   });
   const [addProduct] = useMutation(ADD_PRODUCT);
+  
+  const [idToUpdate, setIdToUpdate] = useState('');
+  const [updateFormData, setUpdateFormData] = useState({
+    title: '',
+    description: '',
+    image: '',
+    price: 0,
+    quantity: 0,
+    category: ''
+  });
+  const [updateProduct] = useMutation(UPDATE_PRODUCT);
+  const handleUpdateChange = (event) => {
+    setUpdateFormData({ ...updateFormData, [event.target.name]: event.target.value });
+  };
+  const handleUpdateSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      console.log(idToUpdate, updateFormData)
+      await updateProduct({ variables: { id: idToUpdate, product: updateFormData }});
+    } catch(e) {
+      console.log(e);
+    }
+
+    setUpdateFormData({
+      title: '',
+      description: '',
+      image: '',
+      price: 0,
+      quantity: 0,
+      category: ''
+    });
+  };
 
   const { loading, data } = useQuery(GET_ALL_PRODUCTS);
   const [deleteProduct] = useMutation(DELETE_PRODUCT);
@@ -28,6 +61,14 @@ function Admin() {
       setShowForm('default');
     } else {
       setShowForm('hidden');
+    }
+  }
+
+  const handleShowUpdateForm = () => {
+    if (showUpdateForm === 'hidden') {
+      setUpdateForm('default');
+    } else {
+      setUpdateForm('hidden');
     }
   }
 
@@ -86,6 +127,48 @@ function Admin() {
         <input type="text" name="category" value={formData.category} onChange={handleInputChange} /> <br />
         <button type="submit">Submit</button>
       </form>
+
+      <form className={showUpdateForm} onSubmit={handleUpdateSubmit}>
+      <p>Product ID: {idToUpdate}</p>
+      <input
+        type="text"
+        name="title"
+        value={updateFormData.title}
+        onChange={handleUpdateChange}
+      />
+      <input
+        type="text"
+        name="description"
+        value={updateFormData.description}
+        onChange={handleUpdateChange}
+      />
+      <input
+        type="text"
+        name="image"
+        value={updateFormData.image}
+        onChange={handleUpdateChange}
+      />
+      <input
+        type="number"
+        name="price"
+        value={updateFormData.price}
+        onChange={handleUpdateChange}
+      />
+      <input
+        type="number"
+        name="quantity"
+        value={updateFormData.quantity}
+        onChange={handleUpdateChange}
+      />
+      <input
+        type="text"
+        name="category"
+        value={updateFormData.category}
+        onChange={handleUpdateChange}
+      />
+      <button type="submit">Update Product</button>
+      </form>
+
       {data.productList.map(p => {
         return (
           <div key={p._id} className='admin-block'>
@@ -95,7 +178,10 @@ function Admin() {
             <div><span className='admin-block-title'>Image:</span> {p.image}</div>
             <div><span className='admin-block-title'>Price:</span> {p.price}</div>
             <div><span className='admin-block-title'>Quantity:</span> {p.quantity}</div>
-            <button>Update</button>
+            <button onClick={() => {
+              handleShowUpdateForm();
+              setIdToUpdate(p._id)
+            }}>Update</button>
             <button onClick={() => {
               deleteProduct({ variables: { id: p._id } });
               document.location.reload();

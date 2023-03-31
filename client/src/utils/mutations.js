@@ -83,6 +83,20 @@ export const ADD_PRODUCT = gql`
 }
 `;
 
+export const UPDATE_PRODUCT = gql`
+  mutation updateProduct($id: ID!, $product: ProductInput!) {
+  updateProduct(_id: $id, product: $product) {
+    _id
+    category
+    description
+    image
+    price
+    quantity
+    title
+  }
+}
+`;
+
 export const UPDATE_CART = gql`
 mutation UpdateCart($cartData: UpdateCartInput!) {
   updateCart(cartData: $cartData) {
@@ -103,4 +117,5 @@ mutation UpdateCart($cartData: UpdateCartInput!) {
     updatedAt
   }
 }
-`
+`;
+

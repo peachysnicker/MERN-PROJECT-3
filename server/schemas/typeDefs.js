@@ -52,11 +52,11 @@ const typeDefs = gql`
   }
 
   input ProductInput {
-  title: String!
-  description: String!
+  title: String
+  description: String
   image: String
-  price: Float!
-  quantity: Int!
+  price: Float
+  quantity: Int
   category: String
 }
 
@@ -118,7 +118,7 @@ const typeDefs = gql`
       email: String
       password: String
     ): User
-    updateProduct(_id: ID!, quantity: Int!): Product
+    updateProduct(_id: ID!, product: ProductInput!): Product
     addPaymentInfo(payment: PaymentInput!): User!
     addAddress(address: AddressInput!): User!
     deleteProduct(_id: ID!): Product 
