@@ -5,14 +5,39 @@ export const GET_ME = gql`
   query me {
     me {
       _id
+      username
       email
       password
       payment {
         card_number
-        cvv
         expiration_date
+        cvv
+      }
+      address {
+        street
+        city
+        province
+        postal_code
+        phone
       }
       isAdmin
+      cart {
+        _id
+        products {
+          productId {
+            _id
+            title
+            description
+            image
+            quantity
+            price
+            category
+          }
+          quantity
+        }
+        createdAt
+        updatedAt
+      }
     }
   }
 `;
@@ -42,16 +67,16 @@ export const QUERY_USER = gql`
 `;
 export const QUERY_ALL_PRODUCTS = gql`
   query queryAllProducts {
-  productList {
-    _id
-    title
-    description
-    image
-    quantity
-    price
-    category
+    productList {
+      _id
+      title
+      description
+      image
+      quantity
+      price
+      category
+    }
   }
-}
 `;
 export const QUERY_CATEGORIES = gql`
   query category {
@@ -64,13 +89,13 @@ export const QUERY_CATEGORIES = gql`
 
 export const GET_ALL_PRODUCTS = gql`
   query ProductList {
-  productList {
-    _id
-    description
-    image
-    price
-    quantity
-    title
+    productList {
+      _id
+      description
+      image
+      price
+      quantity
+      title
+    }
   }
-}
 `;

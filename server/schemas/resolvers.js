@@ -8,13 +8,25 @@ const resolvers = {
     // Returns the user associated with the current context if they are logged in or throws an AuthenticationError if not
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id });
+        const result = await User.findOne({ _id: context.user._id }).populate({
+          path: "cart",
+          populate: {
+            path: "products",
+            populate: {
+              path: "productId",
+            },
+          },
+        });
+
+        console.log(result.cart.products);
+
+        return result;
       }
       throw new AuthenticationError("You need to be logged in!");
     },
     //return a user object by username
     user: async (parent, { username }) => {
-      return User.findOne({ username }).populate('Cart');
+      return User.findOne({ username }).populate("Cart");
     },
 
     //finds and returns the user withcurrent context and their orders sorted by purchase date or error if user is not logged in
@@ -44,7 +56,7 @@ const resolvers = {
 
     // Async function "product" that queries for a Product doc with  _id and returns it with its related Category object (if exists)
     product: async (parent, { _id }) => {
-      return await Product.findById(_id)
+      return await Product.findById(_id);
     },
 
     // Async function "products" that queries for Product docs based on optional category and title parameters, constructs a filter object based on those params, populates the related Category object for each Product, and returns the resulting list of Product docs
@@ -105,10 +117,14 @@ const resolvers = {
     // create new user based on args, signs a token using a helper function signToken() & returns token and user object as an object
     addUser: async (parent, args) => {
       const user = await User.create(args);
-      const cart = await Cart.create({product: []});
-      const updatedUser = await User.findByIdAndUpdate(user._id, {cart}, {
-        new:true
-      })
+      const cart = await Cart.create({ product: [] });
+      const updatedUser = await User.findByIdAndUpdate(
+        user._id,
+        { cart },
+        {
+          new: true,
+        }
+      );
       const token = signToken(updatedUser);
       return { token, updatedUser };
     },
@@ -198,6 +214,32 @@ const resolvers = {
     },
     deleteProduct: async (parent, { _id }) => {
       return Product.findOneAndDelete({ _id });
+    },
+
+    updateCart: async (parent, args, context) => {
+      if (!context.user) {
+        throw new AuthenticationError(
+          "You need to be logged in to add address info."
+        );
+      }
+
+      const userData = await User.findById(context.user._id);
+
+      const cartId = userData.cart;
+
+      const cartData = Cart.findByIdAndUpdate(
+        cartId,
+        {
+          $set: args.cartData,
+        },
+        {
+          new: true,
+        }
+      );
+
+      console.log(cartData);
+
+      return cartData;
     },
   },
 };

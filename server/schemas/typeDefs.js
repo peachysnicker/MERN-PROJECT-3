@@ -24,10 +24,10 @@ const typeDefs = gql`
     price: Float
     category: String
   }
-  
+
   type CartProduct {
-  productId: Product!
-  quantity: Int!
+    productId: Product
+    quantity: Int!
   }
 
   type Cart {
@@ -64,6 +64,7 @@ const typeDefs = gql`
     payment: Payment
     address: Address
     isAdmin: Boolean
+    cart: Cart
   }
 
   input PaymentInput {
@@ -111,7 +112,8 @@ const typeDefs = gql`
     updateProduct(_id: ID!, quantity: Int!): Product
     addPaymentInfo(payment: PaymentInput!): User!
     addAddress(address: AddressInput!): User!
-    deleteProduct(_id: ID!): Product 
+    deleteProduct(_id: ID!): Product
+    updateCart(cartData: UpdateCartInput!): Cart
   }
 `;
 
