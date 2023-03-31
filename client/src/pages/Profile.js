@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import { GET_ME, QUERY_USER } from '../utils/queries';
+import { GET_ME } from '../utils/queries';
 import { ADD_PAYMENT_INFO, ADD_ADDRESS } from '../utils/mutations';
 import { Link } from 'react-router-dom';
 
@@ -86,8 +86,11 @@ function Profile() {
           <div>ID: {data ? data.me._id : ''}</div>
           <div>Email: {data ? data.me.email : ''}</div>
           <div>Admin: {data ? data.me.isAdmin ? (<Link to="/admin">Go to Admin Page</Link>) : 'N/A' : ''}</div>
+          <div>Credit card info: {data ? data.me.payment.cvv !== null ? 'Saved' : '' : ''}</div>
+          <div>Address: {data ? data.me.address.city !== null ? `${data.me.address.street} ${data.me.address.city} ${data.me.address.province}` : '' : ''}</div>
 
           <form onSubmit={handleFormSubmit}>
+            <h2>Save your card info</h2>
             <label htmlFor="cardNumber">Card Number:</label>
             <input type="text" id="cardNumber" value={cardNumber} onChange={(event) => setCardNumber(event.target.value)} /> <br />
             <label htmlFor="expirationDate">Expiration Date:</label>
@@ -98,6 +101,7 @@ function Profile() {
           </form>
 
           <form onSubmit={handleAddressFormSubmit}>
+            <h2>Save your address info</h2>
             <label htmlFor="street">Street:</label>
             <input type="text" id="street" value={street} onChange={(event) => setStreet(event.target.value)} /> <br />
             <label htmlFor="city">City:</label>

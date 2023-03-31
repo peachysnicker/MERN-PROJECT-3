@@ -14,7 +14,6 @@ const Home = () => {
 
   return (
     <div>
-      <div className="home-container">Home</div>
       <div className="flex-row justify-center">
         <div className="col-12 col-md-10 my-3">
           <CategoryMenu />

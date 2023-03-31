@@ -96,6 +96,7 @@ export const GET_ALL_PRODUCTS = gql`
       price
       quantity
       title
+      category
     }
   }
 `;

@@ -130,42 +130,48 @@ function Admin() {
 
       <form className={showUpdateForm} onSubmit={handleUpdateSubmit}>
       <p>Product ID: {idToUpdate}</p>
+      <label>Title: </label> <br />
       <input
         type="text"
         name="title"
         value={updateFormData.title}
         onChange={handleUpdateChange}
-      />
+      /> <br />
+      <label>Description: </label> <br />
       <input
         type="text"
         name="description"
         value={updateFormData.description}
         onChange={handleUpdateChange}
-      />
+      /> <br />
+      <label>Image: </label> <br />
       <input
         type="text"
         name="image"
         value={updateFormData.image}
         onChange={handleUpdateChange}
-      />
+      /> <br />
+      <label>Price: </label> <br />
       <input
         type="number"
         name="price"
         value={updateFormData.price}
         onChange={handleUpdateChange}
-      />
+      /> <br />
+      <label>Quantity: </label> <br />
       <input
         type="number"
         name="quantity"
         value={updateFormData.quantity}
         onChange={handleUpdateChange}
-      />
+      /> <br />
+      <label>Category: </label> <br />
       <input
         type="text"
         name="category"
         value={updateFormData.category}
         onChange={handleUpdateChange}
-      />
+      /> <br />
       <button type="submit">Update Product</button>
       </form>
 
@@ -180,7 +186,15 @@ function Admin() {
             <div><span className='admin-block-title'>Quantity:</span> {p.quantity}</div>
             <button onClick={() => {
               handleShowUpdateForm();
-              setIdToUpdate(p._id)
+              setIdToUpdate(p._id);
+              setUpdateFormData({
+                title: p.title,
+                description: p.description,
+                image: p.image,
+                price: p.price,
+                quantity: p.quantity,
+                category: p.category
+              });
             }}>Update</button>
             <button onClick={() => {
               deleteProduct({ variables: { id: p._id } });
