@@ -8,17 +8,7 @@ const resolvers = {
     // Returns the user associated with the current context if they are logged in or throws an AuthenticationError if not
     me: async (parent, args, context) => {
       if (context.user) {
-        const result = await User.findOne({ _id: context.user._id }).populate({
-          path: "cart",
-          populate: {
-            path: "products",
-            populate: {
-              path: "productId",
-            },
-          },
-        });
-
-        console.log(result.cart.products);
+        const result = await User.findOne({ _id: context.user._id }).populate("cart");
 
         return result;
       }
@@ -26,7 +16,7 @@ const resolvers = {
     },
     //return a user object by username
     user: async (parent, { username }) => {
-      return User.findOne({ username }).populate("Cart");
+      return User.findOne({ username }).populate("cart");
     },
 
     //finds and returns the user withcurrent context and their orders sorted by purchase date or error if user is not logged in

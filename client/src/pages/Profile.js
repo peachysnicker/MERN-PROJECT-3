@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import { GET_ME } from '../utils/queries';
+import { GET_ME, QUERY_USER } from '../utils/queries';
 import { ADD_PAYMENT_INFO, ADD_ADDRESS } from '../utils/mutations';
 import { Link } from 'react-router-dom';
 
@@ -10,7 +10,7 @@ function Profile() {
   const { loadingQuery, data } = useQuery(GET_ME);
   const [addPaymentInfo, { loadingMutation, error}] = useMutation(ADD_PAYMENT_INFO);
   const [addAddress, { loading: loadingAddress, error: addressError}] = useMutation(ADD_ADDRESS);
-  
+  console.log(data);
 
   const [cardNumber, setCardNumber] = useState('');
   const [expirationDate, setExpirationDate] = useState('');
