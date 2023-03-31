@@ -155,14 +155,14 @@ const resolvers = {
     },
 
     //product's quantity by decr  by the absolute value of the provided quantity & returns the updated product object
-    updateProduct: async (parent, { _id, quantity }) => {
-      const decrement = Math.abs(quantity) * -1;
-
-      return await Product.findByIdAndUpdate(
-        _id,
-        { $inc: { quantity: decrement } },
-        { new: true }
-      );
+    updateProduct: async (_, { _id, product }) => {
+      try {
+        const updatedProduct = await Product.findByIdAndUpdate(_id, product, { new: true });
+        return updatedProduct;
+      } catch (err) {
+        console.error(err);
+        throw new Error('Failed to update product');
+      }
     },
 
     // Adds payment information to user account and returns the updated user object or error if not logged in
