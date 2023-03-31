@@ -241,6 +241,14 @@ const resolvers = {
 
       return cartData;
     },
+    addProduct: async (_, { product }) => {
+      try {
+        const savedProduct = await Product.create(product);
+        return savedProduct;
+      } catch (error) {
+        throw new Error('Error creating product');
+      }
+    },
   },
 };
 

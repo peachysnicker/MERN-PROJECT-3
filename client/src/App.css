@@ -139,10 +139,12 @@
   width: 80%;
   border: 1px solid rgba(30, 30, 30, 0.8);
   border-bottom: 0.5px solid rgba(30, 30, 30, 0.8);
+  color: #3d3a3a;
 }
 
 .admin-block .admin-block-title {
   font-weight: bolder;
+  color:rgba(30, 30, 30, 0.8)
 }
 
 .admin-block button {
@@ -161,4 +163,20 @@
   padding: 7px;
   border-radius: 10px;
   cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.admin-container form{
+  border: 1px solid black;
+  border-bottom: 0.5px solid black;
+  width: 80%;
+  min-height: 100px;
+  padding: 10px;
+}
+
+.admin-container form input {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 100%;
 }
