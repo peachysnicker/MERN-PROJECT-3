@@ -35,7 +35,14 @@ function Admin() {
     event.preventDefault();
     try {
       console.log(idToUpdate, updateFormData)
-      await updateProduct({ variables: { id: idToUpdate, product: updateFormData }});
+      await updateProduct({ variables: { id: idToUpdate, product: {
+        title: updateFormData.title,
+        description:updateFormData.description,
+        image: updateFormData.image,
+        price: parseFloat(updateFormData.price),
+        quantity: parseFloat(updateFormData.quantity),
+        category: updateFormData.quantity
+      } }});
     } catch(e) {
       console.log(e);
     }
