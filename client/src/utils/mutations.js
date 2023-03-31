@@ -68,3 +68,25 @@ export const DELETE_PRODUCT = gql`
   }
 }
 `;
+
+export const UPDATE_CART = gql`
+mutation UpdateCart($cartData: UpdateCartInput!) {
+  updateCart(cartData: $cartData) {
+    _id
+    products {
+      productId {
+        _id
+        title
+        description
+        image
+        quantity
+        price
+        category
+      }
+      quantity
+    }
+    createdAt
+    updatedAt
+  }
+}
+`
