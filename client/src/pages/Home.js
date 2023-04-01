@@ -23,8 +23,27 @@ const Home = () => {
         alt="woman hiking"
       />
       <div id="categoryMenu" className="p-4 col-12 d-flex justify-content-end">
-        <CategoryMenu />
+        {/* <CategoryMenu /> */}
       </div>
+      <div>
+        <img
+          id="productBanner"
+          src="product-banner.png"
+          width="100%"
+          alt="product banner"
+        />
+      </div>
+      <div
+        id="categoryMenu"
+        className="p-4 col-12 d-flex justify-content-end"
+      ></div>
+      {/* coniditonal rendering while loading is true then show div ..loading.. */}
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        // or if not loading - render the profile list
+        <ProductList products={products} title="Products available!" />
+      )}
       <div>
         <img
           id="biking"
@@ -34,13 +53,6 @@ const Home = () => {
           alt="mountain biking"
         />
       </div>
-      {/* coniditonal rendering while loading is true then show div ..loading.. */}
-      {loading ? (
-        <div>Loading...</div>
-      ) : (
-        // or if not loading - render the profile list
-        <ProductList products={products} title="Products available!" />
-      )}
     </div>
   );
 };

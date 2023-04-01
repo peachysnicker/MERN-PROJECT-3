@@ -54,7 +54,7 @@ const ProductList = ({ products, title, image }) => {
               <h5 className="card-title p-2 m-0">
                 {products.title} <br />
                 <img
-                  className=""
+                  className="col-10 p-4"
                   src={`/images/${products.image}`}
                   alt={products.title}
                 />
