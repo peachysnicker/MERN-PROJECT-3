@@ -3,6 +3,10 @@ import { useQuery, useMutation } from '@apollo/client';
 import { GET_USER_CART } from '../utils/queries';
 import { REMOVE_FROM_CART } from '../utils/mutations';
 import Auth from '../utils/auth';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowsRotate
+} from "@fortawesome/free-solid-svg-icons";
 
 function Cart() {
   const username = Auth.getProfile().data.username;
@@ -20,6 +24,10 @@ function Cart() {
     });
   }
 
+  const refresh = () => {
+    document.location.reload();
+  }
+
   if (loading) {
     return <h2>Loading...</h2>
   }
@@ -31,11 +39,12 @@ function Cart() {
 
   return (
     <div className='cart-container'>
+      <button onClick={refresh}> <FontAwesomeIcon icon={faArrowsRotate}></FontAwesomeIcon> </button>
       <h4>Total number of items in cart: {data.user.cart.products.length}</h4>
       <h5 style={{display: 'none'}}>Cart ID: <span id="cartId">{data.user.cart._id}</span></h5>
-      <div>{data.user.cart.products.map(p => {
+      <div>{data.user.cart.products.map((p,index) => {
         return (
-          <div className='cart-item'>
+          <div className='cart-item' key={index}>
             <div>Product ID: {p.productId._id}</div>
             <div>Product: ${p.productId.title}</div>
             <div>Price: ${p.productId.price}</div>

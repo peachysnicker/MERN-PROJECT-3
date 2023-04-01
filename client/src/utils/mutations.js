@@ -130,3 +130,15 @@ export const REMOVE_FROM_CART = gql`
   }
 }
 `;
+
+export const CLEAR_CART = gql`
+  mutation clearCart($clearCartId: ID!) {
+  clearCart(id: $clearCartId) {
+    products {
+      productId {
+        _id
+      }
+    }
+  }
+}
+`;

@@ -260,6 +260,10 @@ const resolvers = {
         throw new Error(error);
       }
     },
+    clearCart: async (_, { id } ) => {
+      const cart = await Cart.findByIdAndUpdate(id, { products: [] }, { new: true });
+      return cart;
+    },
     addProduct: async (_, { product }) => {
       try {
         const savedProduct = await Product.create(product);

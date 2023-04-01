@@ -127,6 +127,7 @@ const typeDefs = gql`
     addProduct(product: ProductInput!): Product!
     updateCart(cartData: UpdateCartInput!): Cart
     removeProductFromCart(cartId: ID!, productId: ID!): Cart!
+    clearCart(id: ID!): Cart!
   }
 `;
 
