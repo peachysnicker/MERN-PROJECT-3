@@ -26,7 +26,8 @@ const productSchema = new Schema(
     category: {
       type: String,
       trim: true
-    }
+    },
+    categories: [{ type: String }],
   },
   {
     timestamps: true,

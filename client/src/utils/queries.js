@@ -79,10 +79,15 @@ export const QUERY_ALL_PRODUCTS = gql`
   }
 `;
 export const QUERY_CATEGORIES = gql`
-  query category {
-    categories {
+  query GetProductsByCategory($category: String!) {
+    productsByCategory(category: $category) {
       _id
-      name
+      title
+      description
+      image
+      price
+      quantity
+      category
     }
   }
 `;
@@ -103,22 +108,22 @@ export const GET_ALL_PRODUCTS = gql`
 
 export const GET_USER_CART = gql`
   query getUserCart($username: String!) {
-  user(username: $username) {
-    cart {
-      _id
-      createdAt
-      products {
-        productId {
-          _id
-          category
-          price
-          title
+    user(username: $username) {
+      cart {
+        _id
+        createdAt
+        products {
+          productId {
+            _id
+            category
+            price
+            title
+          }
+          quantity
         }
-        quantity
       }
+      username
+      email
     }
-    username
-    email
   }
-}
 `;

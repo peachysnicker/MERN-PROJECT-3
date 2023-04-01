@@ -3,16 +3,14 @@ import { useQuery } from '@apollo/client';
 import { QUERY_CATEGORIES } from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
 
-function CategoryMenu() {
+function CategoryMenu({ setCurrentCategory }) {
   const [categories, setCategories] = useState([]);
-  const [currentCategory, setCurrentCategory] = useState('');
-
   const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
 
   useEffect(() => {
-    if (categoryData) {
-      setCategories(categoryData.categories);
-      categoryData.categories.forEach((category) => {
+    if (categoryData && categoryData.categoryList) {
+      setCategories(categoryData.categoryList);
+      categoryData.categoryList.forEach((category) => {
         idbPromise('categories', 'put', category);
       });
     } else if (!loading) {
@@ -23,7 +21,8 @@ function CategoryMenu() {
   }, [categoryData, loading]);
 
   const handleChange = (event) => {
-    setCurrentCategory(event.target.value);
+    const categoryId = event.target.value;
+    setCurrentCategory(categoryId);
   };
 
   return (
@@ -31,7 +30,7 @@ function CategoryMenu() {
       <label htmlFor="category-select">Choose a Category:</label>
       <select
         id="category-select"
-        value={currentCategory}
+        defaultValue=""
         onChange={handleChange}
       >
         <option value="">All Categories</option>

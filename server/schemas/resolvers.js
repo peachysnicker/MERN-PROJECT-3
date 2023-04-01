@@ -28,31 +28,25 @@ const resolvers = {
       });
     },
 
-    //finds and returns the user withcurrent context and their orders sorted by purchase date or error if user is not logged in
-    // user: async (parent, args, context) => {
-    //   if (context.user) {
-    //     const user = await User.findById(context.user._id).populate({
-    //       path: 'orders.products',
-    //       populate: 'category'
-    //     });
 
-    //     user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
-
-    //     return user;
-    //   }
-
-    //   throw new AuthenticationError('Not logged in');
-    // },
 
     //MARIAH TESTING
     // Async function "products" that queries for a list of Category docs and returns the result
+    // productList: async () => {
+    //   return await Product.find();
+    // },
     productList: async () => {
-      return await Product.find();
+      const products = await Product.find({});
+      return products;
     },
+
     // TEST over
 
     // Async function "categories" that queries for a list of Category docs and returns the result
-
+    productsByCategory: async (parent, args, context) => {
+      const products = await Product.find({ category: args.category });
+      return products;
+    },
     // Async function "product" that queries for a Product doc with  _id and returns it with its related Category object (if exists)
     product: async (parent, { _id }) => {
       return await Product.findById(_id);
@@ -110,6 +104,7 @@ const resolvers = {
 
       return { session: session.id };
     },
+    
   },
 
   Mutation: {
