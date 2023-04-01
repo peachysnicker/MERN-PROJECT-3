@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/mutations';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import { LOGIN_USER } from "../utils/mutations";
 
-import Auth from '../utils/auth';
+import Auth from "../utils/auth";
 
 function Login() {
-  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
   const handleChange = (event) => {
@@ -32,50 +32,44 @@ function Login() {
     }
 
     setFormState({
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     });
   };
   return (
-    <div className='flex-container'>
+    <div className="flex-container">
       {data ? (
-              <p>
-                Success! You may now head{' '}
-                <Link to="/">back to the homepage.</Link>
-              </p>
-            ) : (
-              <form className='login-form' onSubmit={handleFormSubmit}>
-                <h2>Please Login</h2>
-                <input
-                  placeholder="Your email"
-                  name="email"
-                  type="email"
-                  value={formState.email}
-                  onChange={handleChange}
-                /> <br />
-                <input
-                  placeholder="******"
-                  name="password"
-                  type="password"
-                  value={formState.password}
-                  onChange={handleChange}
-                /> <br />
-                <button
-                  style={{ cursor: 'pointer' }}
-                  type="submit"
-                >
-                  Login
-                </button>
-              </form>
-            )}
+        <p>
+          Success! You may now head <Link to="/">back to the homepage.</Link>
+        </p>
+      ) : (
+        <form className="login-form" onSubmit={handleFormSubmit}>
+          <h2>Please Login</h2>
+          <input
+            placeholder="Your email"
+            name="email"
+            type="email"
+            value={formState.email}
+            onChange={handleChange}
+          />{" "}
+          <br />
+          <input
+            placeholder="******"
+            name="password"
+            type="password"
+            value={formState.password}
+            onChange={handleChange}
+          />{" "}
+          <br />
+          <button className="btn btn-block btn-light" type="submit">
+            Login
+          </button>
+        </form>
+      )}
 
-            {error && (
-              <div>
-                {error.message}
-              </div>
-            )}
+      {error && <div>{error.message}</div>}
     </div>
-  )
+  );
 }
 
 export default Login;
