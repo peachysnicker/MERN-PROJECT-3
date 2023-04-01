@@ -42,21 +42,25 @@ const ProductList = ({ products, title, image }) => {
   }
 
   return (
-    <div>
-      <div className="flex-row justify-space-between my-4">
-        {products &&
-          products.map((products) => (
-            <div key={products._id} className="col-12 col-xl-6">
-              <div className="card mb-3">
-                <h4 className="card-header bg-dark text-light p-2 m-0">
-                  {products.title} <br />
-                  <img src={`/images/${products.image}`} alt={products.title} />
-                </h4>
-                <button onClick={() => addToCart(products)}>Add to Cart</button>
-              </div>
+    <div className="flex-row justify-space-between my-4">
+      {products &&
+        products.map((products) => (
+          <div key={products._id} className="col-3 col-3">
+            <div className="card mb-3">
+              <h5 className="card-header p-2 m-0">
+                {products.title} <br />
+                <img
+                  className="col-3 justify-content-center"
+                  src={`/images/${products.image}`}
+                  alt={products.title}
+                />
+              </h5>
+              <button className=" " onClick={() => addToCart(products)}>
+                Add to Cart
+              </button>
             </div>
-          ))}
-      </div>
+          </div>
+        ))}
     </div>
   );
 };
