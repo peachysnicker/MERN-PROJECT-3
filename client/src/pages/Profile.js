@@ -82,9 +82,9 @@ function Profile() {
 
   return (
     <div className="profile-container">
-      <h6>Your Account Info:</h6>
       {Auth.loggedIn() ? (
         <div className="profile">
+          <h6>Your Account Information:</h6>
           <div>ID: {data ? data.me._id : ""}</div>
           <div>Email: {data ? data.me.email : ""}</div>
           <div>
@@ -111,91 +111,88 @@ function Profile() {
                 : ""
               : ""}
           </div>
-          <div>
-            <form onSubmit={handleFormSubmit}>
-              <h2>Save your card info</h2>
-              <label htmlFor="cardNumber">Card Number:</label>
-              <input
-                type="text"
-                id="cardNumber"
-                value={cardNumber}
-                onChange={(event) => setCardNumber(event.target.value)}
-              />{" "}
-              <br />
-              <label htmlFor="expirationDate">Expiration Date:</label>
-              <input
-                type="text"
-                id="expirationDate"
-                value={expirationDate}
-                onChange={(event) => setExpirationDate(event.target.value)}
-              />{" "}
-              <br />
-              <label htmlFor="cvv">CVV:</label>
-              <input
-                type="text"
-                id="cvv"
-                value={cvv}
-                onChange={(event) => setCvv(event.target.value)}
-              />{" "}
-              <br />
-              <button className="btn btn-block btn-light" type="submit">
-                Save Payment Information
-              </button>
-            </form>
-          </div>
-          <div>
-            <form className="" onSubmit={handleAddressFormSubmit}>
-              <h2>Save your address info</h2>
-              <label htmlFor="street">Street:</label>
-              <input
-                type="text"
-                id="street"
-                value={street}
-                onChange={(event) => setStreet(event.target.value)}
-              />{" "}
-              <br />
-              <label htmlFor="city">City:</label>
-              <input
-                type="text"
-                id="city"
-                value={city}
-                onChange={(event) => setCity(event.target.value)}
-              />{" "}
-              <br />
-              <label htmlFor="province">Province:</label>
-              <input
-                type="text"
-                id="province"
-                value={province}
-                onChange={(event) => setProvince(event.target.value)}
-              />{" "}
-              <br />
-              <label htmlFor="postalCode">Postal Code:</label>
-              <input
-                type="text"
-                id="postalCode"
-                value={postalCode}
-                onChange={(event) => setPostalCode(event.target.value)}
-              />{" "}
-              <br />
-              <label htmlFor="phone">Phone:</label>
-              <input
-                type="text"
-                id="phone"
-                value={phone}
-                onChange={(event) => setPhone(event.target.value)}
-              />{" "}
-              <br />
-              <button className="btn btn-block btn-light" type="submit">
-                Save Address Information
-              </button>
-            </form>
-          </div>
+          <form className="" onSubmit={handleFormSubmit}>
+            <h2>Save your card info</h2>
+            <label htmlFor="cardNumber">Card Number:</label>
+            <input
+              type="text"
+              id="cardNumber"
+              value={cardNumber}
+              onChange={(event) => setCardNumber(event.target.value)}
+            />{" "}
+            <br />
+            <label htmlFor="expirationDate">Expiration Date:</label>
+            <input
+              type="text"
+              id="expirationDate"
+              value={expirationDate}
+              onChange={(event) => setExpirationDate(event.target.value)}
+            />{" "}
+            <br />
+            <label htmlFor="cvv">CVV:</label>
+            <input
+              type="text"
+              id="cvv"
+              value={cvv}
+              onChange={(event) => setCvv(event.target.value)}
+            />{" "}
+            <br />
+            <button className="btn btn-block btn-light" type="submit">
+              Save Payment Information
+            </button>
+          </form>
+          <form className="" onSubmit={handleAddressFormSubmit}>
+            <h2>Save your address info</h2>
+            <label htmlFor="street">Street:</label>
+            <input
+              type="text"
+              id="street"
+              value={street}
+              onChange={(event) => setStreet(event.target.value)}
+            />{" "}
+            <br />
+            <label htmlFor="city">City:</label>
+            <input
+              type="text"
+              id="city"
+              value={city}
+              onChange={(event) => setCity(event.target.value)}
+            />{" "}
+            <br />
+            <label htmlFor="province">Province:</label>
+            <input
+              type="text"
+              id="province"
+              value={province}
+              onChange={(event) => setProvince(event.target.value)}
+            />{" "}
+            <br />
+            <label htmlFor="postalCode">Postal Code:</label>
+            <input
+              type="text"
+              id="postalCode"
+              value={postalCode}
+              onChange={(event) => setPostalCode(event.target.value)}
+            />{" "}
+            <br />
+            <label htmlFor="phone">Phone:</label>
+            <input
+              type="text"
+              id="phone"
+              value={phone}
+              onChange={(event) => setPhone(event.target.value)}
+            />{" "}
+            <br />
+            <button className="btn btn-block btn-light" type="submit">
+              Save Address Information
+            </button>
+          </form>
         </div>
       ) : (
         <div>
-          You need to login to check your profile
-          <Link to="home">Home</Link>
+          <h6>Please log in to view your profile</h6>
+          <br></br>
+          <Link to="/login">login</Link>
         </div>
       )}
     </div>
