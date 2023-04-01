@@ -96,7 +96,14 @@ function Admin() {
     try {
         await addProduct({
         variables: {
-          product: formData
+          product: {
+            title: formData.title,
+            description: formData.description,
+            image: formData.image,
+            price: parseFloat(formData.price),
+            quantity: parseFloat(formData.quantity),
+            category: formData.category
+          }
         }
       });
     } catch(e) {
