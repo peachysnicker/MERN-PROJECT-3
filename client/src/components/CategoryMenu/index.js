@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { useQuery } from '@apollo/client';
-import { QUERY_CATEGORIES } from '../../utils/queries';
-import { idbPromise } from '../../utils/helpers';
+import React, { useEffect, useState } from "react";
+import { useQuery } from "@apollo/client";
+import { QUERY_CATEGORIES } from "../../utils/queries";
+import { idbPromise } from "../../utils/helpers";
 
 function CategoryMenu() {
   const [categories, setCategories] = useState([]);
-  const [currentCategory, setCurrentCategory] = useState('');
+  const [currentCategory, setCurrentCategory] = useState("");
 
   const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
 
@@ -13,10 +13,10 @@ function CategoryMenu() {
     if (categoryData) {
       setCategories(categoryData.categories);
       categoryData.categories.forEach((category) => {
-        idbPromise('categories', 'put', category);
+        idbPromise("categories", "put", category);
       });
     } else if (!loading) {
-      idbPromise('categories', 'get').then((categories) => {
+      idbPromise("categories", "get").then((categories) => {
         setCategories(categories);
       });
     }
@@ -27,14 +27,14 @@ function CategoryMenu() {
   };
 
   return (
-    <div>
-      <label htmlFor="category-select">Choose a Category:</label>
+    <div className="categoryDropDown">
+      <label htmlFor="category-select"></label>
       <select
         id="category-select"
         value={currentCategory}
         onChange={handleChange}
       >
-        <option value="">All Categories</option>
+        <option value="">Choose a Category:</option>
         {categories.map((category) => (
           <option key={category._id} value={category._id}>
             {category.name}

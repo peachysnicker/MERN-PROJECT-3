@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { GET_ME } from "../utils/queries";
 import { UPDATE_CART } from "../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
 
-import Auth from '../utils/auth';
+import Auth from "../utils/auth";
 
 const ProductList = ({ products, title, image }) => {
   const { loading, data } = useQuery(GET_ME);
@@ -45,22 +46,33 @@ const ProductList = ({ products, title, image }) => {
   }
 
   return (
-    <div>
-      <h3>{title}</h3>
-      <div className="flex-row justify-space-between my-4">
-        {products &&
-          products.map((products) => (
-            <div key={products._id} className="col-12 col-xl-6">
-              <div className="card mb-3">
-                <h4 className="card-header bg-dark text-light p-2 m-0">
-                  {products.title} <br />
-                  <img src={`/images/${products.image}`} alt={products.title} />
-                </h4>
-                {Auth.loggedIn() ? (<button onClick={() => addToCart(products)}>Add to Cart</button>) : (<div>Login to add item to cart</div>)}
-              </div>
+    <div className="col-8 d-inline-flex  justify-content-space-around my-4">
+      {products &&
+        products.map((products) => (
+          <div key={products._id} className="col-3 p-2">
+            <div className="card mb-3">
+              <h5 className="card-title p-2 m-0">
+                {products.title} <br />
+                <img
+                  className="col-10 p-4"
+                  src={`/images/${products.image}`}
+                  alt={products.title}
+                />
+              </h5>
+              {Auth.loggedIn() ? (
+                <button className=" " onClick={() => addToCart(products)}>
+                  Add to Cart
+                </button>
+              ) : (
+                <div>
+                  <Link className="plsLogin" to="/login">
+                    Login to add items to cart
+                  </Link>
+                </div>
+              )}
             </div>
-          ))}
-      </div>
+          </div>
+        ))}
     </div>
   );
 };
