@@ -107,6 +107,7 @@ const typeDefs = gql`
     order(_id: ID!): Order
     checkout(products: [ID]!): Checkout
     productList: [Product]
+    productsByCategory(category: String!): [Product!]!
   }
 
   type Mutation {

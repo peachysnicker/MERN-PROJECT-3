@@ -47,13 +47,18 @@ const resolvers = {
     //MARIAH TESTING
     // Async function "products" that queries for a list of Category docs and returns the result
     productList: async () => {
-      return await Product.find();
+      const products = await Product.find({});
+      return products;
     },
     // TEST over
 
     // Async function "categories" that queries for a list of Category docs and returns the result
 
     // Async function "product" that queries for a Product doc with  _id and returns it with its related Category object (if exists)
+    productsByCategory: async (parent, args, context) => {
+      const products = await Product.find({ category: args.category });
+      return products;
+    },
     product: async (parent, { _id }) => {
       return await Product.findById(_id);
     },

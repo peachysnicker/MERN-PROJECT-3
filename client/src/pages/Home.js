@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ProductList from "../components/ProductList";
 import CategoryMenu from "../components/CategoryMenu";
 // custom hook from apollo/client library - allows us to use the queries
@@ -12,6 +12,10 @@ const Home = () => {
   const { loading, data } = useQuery(QUERY_ALL_PRODUCTS);
   //Prop - Checking when the data comes back set it to profiles data?. - means if data is there then get the profiles object or give an empty array
   const products = data?.productList || [];
+  const [currentCategory, setCurrentCategory] = useState("");
+  const filteredProducts = currentCategory
+  ? products.filter((product) => product.category._id === currentCategory)
+  : products;
 
   return (
     <div className="">
@@ -23,7 +27,7 @@ const Home = () => {
         alt="woman hiking"
       />
       <div id="categoryMenu" className="p-4 col-12 d-flex justify-content-end">
-        <CategoryMenu />
+      <CategoryMenu setCurrentCategory={setCurrentCategory} />
       </div>
       <div>
         <img
@@ -42,7 +46,11 @@ const Home = () => {
         <div>Loading...</div>
       ) : (
         // or if not loading - render the profile list
-        <ProductList products={products} title="Products available!" />
+        <ProductList
+          products={filteredProducts}
+          title="Products available!"
+          currentCategory={currentCategory}
+        />
       )}
       <div>
         <img
