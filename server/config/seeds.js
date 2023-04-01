@@ -1,5 +1,5 @@
 const db = require("./connection");
-const { User, Product} = require("../models");
+const { User, Product, Order, Cart} = require("../models");
 
 db.once("open", async () => {
 
@@ -65,7 +65,7 @@ db.once("open", async () => {
     },
   ]);
 
-  console.log("products seeded");
+  console.log("products seeded", products.length);
 
   await User.deleteMany();
 
@@ -85,13 +85,20 @@ db.once("open", async () => {
     email: "eholt@testmail.com",
     password: "password12345",
   });
+  
+  await Cart.deleteMany();
+  const response = await Cart.create({products: []})
+  console.log(response);
 
   await User.create({
     username: "jhu8480",
     email: "jhu8480@gmail.com",
     password: "12345",
     isAdmin: true,
+    cart: response._id
   });
+
+  
 
   await User.create({
     username: "test",

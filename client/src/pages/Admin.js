@@ -35,7 +35,14 @@ function Admin() {
     event.preventDefault();
     try {
       console.log(idToUpdate, updateFormData)
-      await updateProduct({ variables: { id: idToUpdate, product: updateFormData }});
+      await updateProduct({ variables: { id: idToUpdate, product: {
+        title: updateFormData.title,
+        description:updateFormData.description,
+        image: updateFormData.image,
+        price: parseFloat(updateFormData.price),
+        quantity: parseFloat(updateFormData.quantity),
+        category: updateFormData.quantity
+      } }});
     } catch(e) {
       console.log(e);
     }
@@ -89,7 +96,14 @@ function Admin() {
     try {
         await addProduct({
         variables: {
-          product: formData
+          product: {
+            title: formData.title,
+            description: formData.description,
+            image: formData.image,
+            price: parseFloat(formData.price),
+            quantity: parseFloat(formData.quantity),
+            category: formData.category
+          }
         }
       });
     } catch(e) {

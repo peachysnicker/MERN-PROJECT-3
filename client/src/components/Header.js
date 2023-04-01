@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHouse, faUser, faCartShopping, faRightToBracket, faUserPlus, faBuilding } from '@fortawesome/free-solid-svg-icons';
 
 import Auth from '../utils/auth';
 
@@ -14,13 +16,16 @@ function Header() {
       {Auth.loggedIn() ? (
         <>
           <Link to="/">
-            Home
+            <FontAwesomeIcon icon={faHouse}></FontAwesomeIcon> Home
           </Link>
           <Link to="/me">
-            Profile
+            <FontAwesomeIcon icon={faUser}></FontAwesomeIcon> Profile
           </Link>
           <Link to="/cart">
-            Cart
+            <FontAwesomeIcon icon={faCartShopping}></FontAwesomeIcon> Cart
+          </Link>
+          <Link to="/company">
+            <FontAwesomeIcon icon={faBuilding}></FontAwesomeIcon> About us
           </Link>
           <button onClick={logout}>
             Logout
@@ -29,13 +34,16 @@ function Header() {
       ) : (
         <>
           <Link to="/">
-            Home
+            <FontAwesomeIcon icon={faHouse}></FontAwesomeIcon> Home
+          </Link>
+          <Link to="/company">
+            <FontAwesomeIcon icon={faBuilding}></FontAwesomeIcon> About us
           </Link>
           <Link to="/login">
-            Login
+            <FontAwesomeIcon icon={faRightToBracket}></FontAwesomeIcon> Login
           </Link>
           <Link to="/signup">
-            Signup
+            <FontAwesomeIcon icon={faUserPlus}></FontAwesomeIcon> Signup
           </Link>
         </>
       )}
