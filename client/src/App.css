@@ -14,6 +14,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-family: "Poppins", sans-serif;
 }
 
@@ -21,14 +22,53 @@
   display: none;
 }
 
+#logo {
+  margin-left: 20px;
+}
+
+#promo {
+  font-size: 0.7rem;
+  letter-spacing: .1rem;
+  background-color:#FFFBEB;
+}
+
 .header {
-  width: 100vw;
+  width: 20vw;
   height: 7.5vh;
   min-height: 30px;
+  padding: 10px;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: rgba(30, 30, 30, 0.8);
+ 
+}
+
+#logo-nav {
+  background-color: #FFE7CC;
+}
+
+#categoryMenu{
+  background-color: #ECF9FF;
+} 
+
+.categoryDropDown {
+  padding-left: 20px;
+}
+
+
+
+.plsLogin {
+  font-size: 0.7rem;
+  display: flex;
+  color: #000;
+  background-color: #FFE7CC;
+  text-decoration-line: none;
+  justify-content: center;
+}
+
+.plsLogin:hover {
+  color: #69aaff;
+  box-shadow: 0 5px 15px #aaa;
 }
 
 .footer {
@@ -50,9 +90,13 @@
 
 .header a {
   text-decoration: none;
-  color: #fff;
+  color: #000;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-size: 0.7rem;
+  font-size: 1rem;
+}
+
+.header a:hover {
+  color: #69aaff;
 }
 
 .header button {
