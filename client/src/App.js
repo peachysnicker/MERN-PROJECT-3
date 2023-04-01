@@ -14,6 +14,7 @@ import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
 import Admin from "./pages/Admin";
 import Company from "./pages/Company";
+import Checkout from "./pages/Checkout";
 import Cart from "./pages/Cart";
 import Header from "./components/Header";
 
@@ -55,6 +56,7 @@ function App() {
               <Route path="/admin" element={<Admin />} />
               <Route path="/Company" element={<Company />} />
               <Route path="/cart" element={<Cart />}/>
+              <Route path="/Checkout" element={<Checkout />}/>
               <Route path="*" element={<h1>404 Not Found</h1>} />
             </Routes>
           </>

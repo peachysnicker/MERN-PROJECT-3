@@ -119,3 +119,26 @@ mutation UpdateCart($cartData: UpdateCartInput!) {
 }
 `;
 
+export const REMOVE_FROM_CART = gql`
+  mutation RemoveProductFromCart($cartId: ID!, $productId: ID!) {
+  removeProductFromCart(cartId: $cartId, productId: $productId) {
+    products {
+      productId {
+        _id
+      }
+    }
+  }
+}
+`;
+
+export const CLEAR_CART = gql`
+  mutation clearCart($clearCartId: ID!) {
+  clearCart(id: $clearCartId) {
+    products {
+      productId {
+        _id
+      }
+    }
+  }
+}
+`;

@@ -127,3 +127,13 @@ export const GET_USER_CART = gql`
   }
 }
 `;
+
+export const GET_CART_ID = gql`
+  query getCartId($username: String!) {
+  user(username: $username) {
+    cart {
+      _id
+    }
+  }
+}
+`;
