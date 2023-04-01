@@ -36,6 +36,7 @@
   width: 20vw;
   height: 7.5vh;
   min-height: 30px;
+  padding: 10px;
   display: flex;
   justify-content: space-around;
   align-items: center;
