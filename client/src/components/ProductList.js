@@ -3,6 +3,8 @@ import { GET_ME } from "../utils/queries";
 import { UPDATE_CART } from "../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
 
+import Auth from '../utils/auth';
+
 const ProductList = ({ products, title, image }) => {
   const { loading, data } = useQuery(GET_ME);
   const userData = data?.me || {};
@@ -53,7 +55,7 @@ const ProductList = ({ products, title, image }) => {
                   {products.title} <br />
                   <img src={`/images/${products.image}`} alt={products.title} />
                 </h4>
-                <button onClick={() => addToCart(products)}>Add to Cart</button>
+                {Auth.loggedIn() ? (<button onClick={() => addToCart(products)}>Add to Cart</button>) : (<div>Login to add item to cart</div>)}
               </div>
             </div>
           ))}

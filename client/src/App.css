@@ -37,6 +37,15 @@
   min-height: 30px;
   display: flex;
   background-color: rgba(30, 30, 30, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer p a {
+  color: #cfcfcf;
+  font-size: 1.4rem;
 }
 
 .header a {
