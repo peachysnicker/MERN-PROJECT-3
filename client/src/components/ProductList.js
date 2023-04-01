@@ -19,6 +19,7 @@ const ProductList = ({ products, title, image }) => {
     const products = userData.cart.products.map((p) => {
       return {
         productId: p.productId._id,
+        title: p.title,
         quantity: p.quantity,
       };
     });

@@ -16,9 +16,10 @@ const resolvers = {
     },
     //return a user object by username
     user: async (parent, { username }) => {
+      
       return User.findOne({ username }).populate({
         path: "cart",
-        populate: {
+        populate: { 
           path: "products",
           populate: {
             path: "productId",
