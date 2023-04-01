@@ -56,6 +56,19 @@
 }
 
 
+.plsLogin {
+  font-size: 0.7rem;
+  display: flex;
+  color: #000;
+  background-color: #FFE7CC;
+  text-decoration-line: none;
+  justify-content: center;
+}
+
+.plsLogin:hover {
+  color: #69aaff;
+  box-shadow: 0 5px 15px #aaa;
+}
 
 .footer {
   width: 100vw;
@@ -82,7 +95,7 @@
 }
 
 .header a:hover {
-  color: rgba(249, 146, 209, 0.8);
+  color: #69aaff;
 }
 
 .header button {

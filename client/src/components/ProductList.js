@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { GET_ME } from "../utils/queries";
 import { UPDATE_CART } from "../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
@@ -45,15 +46,15 @@ const ProductList = ({ products, title, image }) => {
   }
 
   return (
-    <div className="flex-row justify-space-between my-4">
+    <div className="col-8 d-inline-flex  justify-content-space-around my-4">
       {products &&
         products.map((products) => (
-          <div key={products._id} className="col-3 col-3">
+          <div key={products._id} className="col-3 p-2">
             <div className="card mb-3">
-              <h5 className="card-header p-2 m-0">
+              <h5 className="card-title p-2 m-0">
                 {products.title} <br />
                 <img
-                  className="col-3 justify-content-center"
+                  className=""
                   src={`/images/${products.image}`}
                   alt={products.title}
                 />
@@ -63,7 +64,11 @@ const ProductList = ({ products, title, image }) => {
                   Add to Cart
                 </button>
               ) : (
-                <div>Login to add item to cart</div>
+                <div>
+                  <Link className="plsLogin" to="/login">
+                    Login to add items to cart
+                  </Link>
+                </div>
               )}
             </div>
           </div>
