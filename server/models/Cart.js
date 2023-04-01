@@ -8,6 +8,10 @@ const cartSchema = new Schema(
           type: Schema.Types.ObjectId,
           ref: 'Product',
         },
+        title: {
+          type: String,
+          required: true,
+        },
         quantity: {
           type: Number,
           default: 1,

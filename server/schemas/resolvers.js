@@ -8,17 +8,7 @@ const resolvers = {
     // Returns the user associated with the current context if they are logged in or throws an AuthenticationError if not
     me: async (parent, args, context) => {
       if (context.user) {
-        const result = await User.findOne({ _id: context.user._id }).populate({
-          path: "cart",
-          populate: {
-            path: "products",
-            populate: {
-              path: "productId",
-            },
-          },
-        });
-
-        console.log(result.cart.products);
+        const result = await User.findOne({ _id: context.user._id }).populate("cart");
 
         return result;
       }
@@ -26,7 +16,16 @@ const resolvers = {
     },
     //return a user object by username
     user: async (parent, { username }) => {
-      return User.findOne({ username }).populate("Cart");
+      
+      return User.findOne({ username }).populate({
+        path: "cart",
+        populate: { 
+          path: "products",
+          populate: {
+            path: "productId",
+          },
+        },
+      });
     },
 
     //finds and returns the user withcurrent context and their orders sorted by purchase date or error if user is not logged in
@@ -171,14 +170,14 @@ const resolvers = {
     },
 
     //product's quantity by decr  by the absolute value of the provided quantity & returns the updated product object
-    updateProduct: async (parent, { _id, quantity }) => {
-      const decrement = Math.abs(quantity) * -1;
-
-      return await Product.findByIdAndUpdate(
-        _id,
-        { $inc: { quantity: decrement } },
-        { new: true }
-      );
+    updateProduct: async (_, { _id, product }) => {
+      try {
+        const updatedProduct = await Product.findByIdAndUpdate(_id, product, { new: true });
+        return updatedProduct;
+      } catch (err) {
+        console.error(err);
+        throw new Error('Failed to update product');
+      }
     },
 
     // Adds payment information to user account and returns the updated user object or error if not logged in
@@ -240,6 +239,14 @@ const resolvers = {
       console.log(cartData);
 
       return cartData;
+    },
+    addProduct: async (_, { product }) => {
+      try {
+        const savedProduct = await Product.create(product);
+        return savedProduct;
+      } catch (error) {
+        throw new Error('Error creating product');
+      }
     },
   },
 };

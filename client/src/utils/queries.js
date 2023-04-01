@@ -96,6 +96,29 @@ export const GET_ALL_PRODUCTS = gql`
       price
       quantity
       title
+      category
     }
   }
+`;
+
+export const GET_USER_CART = gql`
+  query getUserCart($username: String!) {
+  user(username: $username) {
+    cart {
+      _id
+      createdAt
+      products {
+        productId {
+          _id
+          category
+          price
+          title
+        }
+        quantity
+      }
+    }
+    username
+    email
+  }
+}
 `;
