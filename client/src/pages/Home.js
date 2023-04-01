@@ -23,7 +23,7 @@ const Home = () => {
         alt="woman hiking"
       />
       <div id="categoryMenu" className="p-4 col-12 d-flex justify-content-end">
-        {/* <CategoryMenu /> */}
+        <CategoryMenu />
       </div>
       <div>
         <img
