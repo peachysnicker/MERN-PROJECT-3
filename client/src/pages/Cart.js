@@ -13,7 +13,7 @@ function Cart() {
   if (loading) {
     return <h2>Loading...</h2>
   }
-
+  console.log("mitsu")
   let totalPrice = 0;
   for (let i = 0; i < data.user.cart.products.length; i++) {
     totalPrice = totalPrice + data.user.cart.products[i].productId.price;
@@ -21,11 +21,13 @@ function Cart() {
 
   return (
     <div>
+      <h1>{data.user.cart.products.length}</h1>
       <div>{data.user.cart.products.map(p => {
         return (
           <>
             <div>Product ID: {p.productId._id}</div>
-            <div>Price {p.productId.price}</div>
+            <div>name: {p.productId.title}</div>
+            <div>Price {p.productId.price * p.quantity}</div>
           </>
         )
       })}</div>
