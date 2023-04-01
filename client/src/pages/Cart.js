@@ -49,7 +49,13 @@ function Cart() {
         )
       })}</div>
       <div>Total price: ${totalPrice}</div>
-      <button>Checkout</button>
+      <button onClick={(() => {
+        if (data.user.cart.products.length === 0) {
+          alert('Nothing in cart');
+        } else {
+          document.location.assign('/checkout')
+        }
+      })}>Checkout</button>
     </div>
   )
 }
