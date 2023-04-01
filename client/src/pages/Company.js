@@ -34,31 +34,10 @@ function Company() {
         <p>Project completed</p>
         <p>Website deployed to Heroku</p>
       </VerticalTimelineElement>
-      <VerticalTimelineElement
-        className="vertical-timeline-element--education"
-        iconStyle={{ background: "#2d3439", color: "#fff" }}
-      >
-        <p>Please click the links below to view our github profiles:</p>
-        <a
-          href="https://github.com/peachysnicker"
-          rel="noreferrer"
-          target="_blank"
-        >
-          Mariah's github
-        </a>{" "}
-        <br />
-        <a
-          href="https://github.com/mitsushiro1"
-          rel="noreferrer"
-          target="_blank"
-        >
-          Mitsushiro's github
-        </a>{" "}
-        <br />
-        <a href="https://github.com/jhu8480" rel="noreferrer" target="_blank">
-          Jinhui's github
-        </a>{" "}
-        <br />
+      <VerticalTimelineElement className='vertical-timeline-element--education' iconStyle={{background: '#2d3439', color: '#fff'}}>
+        <a href="https://github.com/peachysnicker" rel="noreferrer" target="_blank">Mariah's github</a> <br />
+        <a href="https://github.com/mitsushiro1" rel="noreferrer" target="_blank">Mistu's github</a> <br />
+        <a href="https://github.com/jhu8480" rel="noreferrer" target="_blank">Jinhui's github</a> <br />
       </VerticalTimelineElement>
     </VerticalTimeline>
   );

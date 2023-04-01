@@ -40,7 +40,6 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
- 
 }
 
 #logo-nav {
@@ -268,4 +267,28 @@
   cursor: pointer;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.cart-container {
+  min-height: 85vh;
+  padding: 20px;
+}
+
+.cart-container button {
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cart-item {
+  padding: 10px;
+  font-size: 0.8rem;
+}
+
+.cart-item button {
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }

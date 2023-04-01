@@ -245,6 +245,21 @@ const resolvers = {
 
       return cartData;
     },
+    async removeProductFromCart(_, { cartId, productId }) {
+      try {
+        // Find the cart with the given ID and update it by removing the first product with the given ID
+        const cart = await Cart.findOneAndUpdate(
+          { _id: cartId },
+          { $pull: { products: { productId } } },
+          { new: true }
+        );
+
+        // Return the updated cart
+        return cart;
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
     addProduct: async (_, { product }) => {
       try {
         const savedProduct = await Product.create(product);
