@@ -79,10 +79,15 @@ export const QUERY_ALL_PRODUCTS = gql`
   }
 `;
 export const QUERY_CATEGORIES = gql`
-  query category {
-    categories {
+  query GetProductsByCategory($category: String!) {
+    productsByCategory(category: $category) {
       _id
-      name
+      title
+      description
+      image
+      price
+      quantity
+      category
     }
   }
 `;
