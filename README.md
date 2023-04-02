@@ -10,7 +10,6 @@
 - [License](#License)
 - [Technology](#Technology)
 - [Link](#Link)
-- [Contribution](#Contribution)
 - [Contacts](#Contacts)
 
 <a name="Description"></a>
@@ -67,14 +66,8 @@ Bootstrap
 ## Link
 
 This is the link to the deployed heroku website:\
-link\
-This is the link to the deployed github website:\
-link\
+https://sic-ecommerce.herokuapp.com/
 
-<a name="Contribution"></a>
-## Contribution
-
-None so far
 
 <a name="Contacts"></a>
 # Contact
@@ -88,6 +81,5 @@ Jinhui: https://github.com/jhu8480 <br/>
 LinkedIn <br/>
 
 Mitsu: https://www.linkedin.com/in/mitsushiro-hirano-5a356519a/<br/>
-Mariah:
-Jinhui:
--Email : mitsushiro1@gmail.com 
+Mariah: https://www.linkedin.com/in/mariah-feser-ab8250243/
+Jinhui: https://www.linkedin.com/in/jinhui-hu-222b88270/
