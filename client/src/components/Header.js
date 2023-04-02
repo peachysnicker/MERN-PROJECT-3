@@ -51,7 +51,9 @@ function Header() {
               <Link to="/company">
                 <FontAwesomeIcon icon={faBuilding}></FontAwesomeIcon> About us
               </Link>
-              <button onClick={logout}>Logout</button>
+              <button className="logoutBtn" onClick={logout}>
+                Logout
+              </button>
             </>
           ) : (
             <>

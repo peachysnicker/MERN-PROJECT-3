@@ -60,7 +60,7 @@ const ProductList = ({ products, title, image }) => {
                 />
               </h5>
               {Auth.loggedIn() ? (
-                <button className=" " onClick={() => addToCart(products)}>
+                <button className="addCart" onClick={() => addToCart(products)}>
                   Add to Cart
                 </button>
               ) : (
