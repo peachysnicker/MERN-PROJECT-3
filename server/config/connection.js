@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/shoppingWebsiteDB',
+  process.env.MONGODB_URI || 'mongodb+srv://ecommerceDB:sd7Gf6FKM0zhtvws@cluster0.y6jrtdc.mongodb.net/?retryWrites=true&w=majority',
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,

@@ -202,7 +202,7 @@ db.once("open", async () => {
     username: "jhu8480",
     email: "jhu8480@gmail.com",
     password: "12345",
-    // isAdmin: true,
+    isAdmin: true,
     cart: response._id,
   });
 
