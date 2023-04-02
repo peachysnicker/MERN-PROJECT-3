@@ -46,7 +46,7 @@ const ProductList = ({ products, title, image }) => {
   }
 
   return (
-    <div className="col-8 d-inline-flex  justify-content-space-around my-4">
+    <div className="row d-inline-flex  justify-content-space-around my-4">
       {products &&
         products.map((products) => (
           <div key={products._id} className="col-3 p-2">
