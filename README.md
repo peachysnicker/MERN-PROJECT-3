@@ -39,7 +39,7 @@ After you run develop, you can see the fully functional website, sign up by clic
 ## Credits
 
 Jinhui Hu<br/>
-Role: Admin, login/logout, JWT, queries, about us<br/>
+Role: Admin, login/logout, JWT, queries, about us, pushing to heroku<br/>
 Mariah F<br/>
 Role: Models, TypeDefs, Resolvers, styling, slideshow<br/>
 Mitsushiro Hirano<br/>
@@ -81,5 +81,5 @@ Jinhui: https://github.com/jhu8480 <br/>
 LinkedIn <br/>
 
 Mitsu: https://www.linkedin.com/in/mitsushiro-hirano-5a356519a/<br/>
-Mariah: https://www.linkedin.com/in/mariah-feser-ab8250243/
+Mariah: https://www.linkedin.com/in/mariah-feser-ab8250243/<br/>
 Jinhui: https://www.linkedin.com/in/jinhui-hu-222b88270/
