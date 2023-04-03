@@ -118,6 +118,7 @@ export const GET_USER_CART = gql`
           category
           price
           title
+          image
         }
         quantity
       }
