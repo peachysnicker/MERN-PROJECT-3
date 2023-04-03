@@ -29,6 +29,7 @@ const typeDefs = gql`
     productId: Product
     quantity: Int!
     name: String!
+    image: String
   }
 
   type Cart {

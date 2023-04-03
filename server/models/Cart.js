@@ -12,6 +12,9 @@ const cartSchema = new Schema(
           type: String,
           required: true,
         },
+        image: {
+          type: String,
+        },
         quantity: {
           type: Number,
           default: 1,
